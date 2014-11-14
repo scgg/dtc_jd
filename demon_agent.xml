@@ -1,0 +1,10 @@
+<? xml version="1.0" encoding="utf-8" ?>
+<ALL>
+    <AGENT_CONFIG AgentId="1" LogLevel="7" ClientIdleTime="30" AdminListen="*:10191" Version="1" MasterAddr="127.0.0.1:11100"/>
+    <BUSINESS_MODULE>
+    	<MODULE Id="201" AccessToken="00000018b802bd0b17587523870aaf515e409e27" ListenOn="*:10167">
+            <CACHEINSTANCE Id="1" Name="test_dtc" Addr="127.0.0.1:8999/tcp" />
+    	</MODULE>
+    </BUSINESS_MODULE>
+    <AGENT_PLUGIN EnablePlugin="0" PluginName="../lib/plugin_http.so" PluginConfigFile="../conf/plugin.conf" PluginWorkerNumber="2" PluginAddr="*:9999/tcp" PluginTimerNotifyInterval="10" />
+</ALL>
