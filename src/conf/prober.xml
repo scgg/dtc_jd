@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ALL>
+	<PROBER_CONFIG LogLevel="7" ListenOn="*:8383" />
+	<CMDLIST>
+		<CMD Id="10001" ClassName="CMemoryUsageCmd" />
+		<CMD Id="10002" ClassName="HistoryNodeSizeDsitributeCmd"  />
+		<CMD Id="10003" ClassName="HistoryNodeSurvivalTimeDistributeCmd"  />
+		<CMD Id="10004" ClassName="HistoryOpTypeDistributeCmd"  />
+		<CMD Id="50001" ClassName="CurrentNodeSizeDsitributeCmd"  />
+		<CMD Id="50002" ClassName="CurrentRowSizeDsitributeCmd"  />
+		<CMD Id="50003" ClassName="CurrentGetCountDistributeCmd"  />
+		<CMD Id="50004" ClassName="CurrentLastAccDistributeCmd"  />
+		<CMD Id="50005" ClassName="CurrentDirtyCleanPercentCmd"  />
+		<CMD Id="50006" ClassName="CurrentDirtyDistributeCmd"  />
+	</CMDLIST>
+</ALL>

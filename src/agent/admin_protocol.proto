@@ -1,0 +1,121 @@
+package ttc.agent;
+
+message AddCacheServerRequest
+{
+    required int32 module = 1;
+    required int32 instanceid = 2;
+    required string name = 3;
+    required string addr = 4;
+    optional int32 virtual_node = 5 [default = -1];
+    required string hotbak_addr = 6;
+}
+
+message AddModuleRequest
+{
+    required int32 module = 1;
+    required string addr = 2;
+	required string accesstoken = 3;
+}
+
+message ChangeCacheServerAddrRequest
+{
+    required int32 module = 1;
+    required string name = 2;
+    required string addr = 3;
+	required string hotbak_addr=4;
+}
+
+message RemoveCacheServerRequest
+{
+    required int32 module = 1;
+    required string name = 2;
+    optional int32 virtual_node = 3 [default = -1];
+}
+
+message RemoveModuleRequest
+{
+    required int32 module = 1;
+}
+
+message ReloadConfigRequest
+{
+    required string config = 1;
+}
+
+message Reply
+{
+    required int32 status = 1;
+    required string msg = 2;
+}
+
+message HeartBeat
+{
+    required string version = 1;
+    required int32 configure_version = 2;
+    required string configure_md5 = 3;
+	required int32 agent_id = 4;
+}
+
+message HeartBeatReply
+{
+    required int32 latest_configure_version = 1;
+    required string latest_configure_md5 = 2;
+    optional bool push = 3 [default = false];
+}
+
+message GetLatestConfigure
+{
+    optional int32 configure_version = 1;
+}
+
+message LatestConfigureReply
+{
+    required int32 configure_version = 1;
+    required string configure = 2;
+}
+
+message UpdateConfigure
+{
+    required int32 version = 1;
+    required string configure_cksum = 2;
+    required string configure = 3;
+}
+
+message UpdateConfigureReply
+{
+    required int32 ok = 1;
+}
+
+message SetPush
+{
+    required int32 push = 1;
+}
+
+message SetPushReply
+{
+    required int32 ok = 1;
+}
+
+message QueryAgentStatus
+{
+	required int32 id = 1;
+}
+
+message QueryAgentStatusReply
+{
+	required int32 id = 1;
+	required int32 dbtime = 2;
+	required int32 lmtime = 3;
+}
+
+message SwitchCell
+{
+    required int32 businessid= 1;
+    required string name= 2;
+}
+
+message SwitchHotbakRequest{
+	required int32 mode =1;
+	required int32 count = 2;
+	repeated SwitchCell data = 3;
+}

@@ -1,0 +1,6 @@
+<? version="1.0" encoding="utf-8" ?>
+<ALL>
+    <Contacts mobile_phone="15900805582;15721376952;13818502583;18616611867;18516280383;18621589812"/>
+    <Urls     alarm_url="http://monitor.m.jd.com/tools/alarm/api"/>
+	<NetDev   net_flow="10000" ethernet= "eth0"/>
+</ALL>

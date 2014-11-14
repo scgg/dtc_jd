@@ -1,0 +1,1 @@
+./configure  --disable-shared --enable-static --without-libidn --without-ssl --without-zlib --disable-rtsp --disable-ldap --disable-ldaps --without-librtmp --prefix=/usr/local/curl

@@ -1,0 +1,17 @@
+﻿生成启动时间为 2014/11/6 14:43:35。
+     1>项目“E:\vs_test\Second_Task\Test_windows_api\Test_windows_api\Test_windows_api.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt test.cpp
+         test.cpp
+     1>e:\vs_test\second_task\test_windows_api\test_windows_api\ttcapi.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\second_task\test_windows_api\test_windows_api\test.cpp(16): warning C4101: “pchTmp”: 未引用的局部变量
+     1>e:\vs_test\second_task\test_windows_api\test_windows_api\test.cpp(15): warning C4101: “iRealLen”: 未引用的局部变量
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\vs_test\Second_Task\Test_windows_api\Debug\Test_windows_api.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\vs_test\Second_Task\Test_windows_api\Debug\Test_windows_api.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\vs_test\Second_Task\Test_windows_api\Debug\Test_windows_api.lib" /MACHINE:X86 Debug\test.obj
+            正在创建库 E:\vs_test\Second_Task\Test_windows_api\Debug\Test_windows_api.lib 和对象 E:\vs_test\Second_Task\Test_windows_api\Debug\Test_windows_api.exp
+         Test_windows_api.vcxproj -> E:\vs_test\Second_Task\Test_windows_api\Debug\Test_windows_api.exe
+     1>已完成生成项目“E:\vs_test\Second_Task\Test_windows_api\Test_windows_api\Test_windows_api.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.81

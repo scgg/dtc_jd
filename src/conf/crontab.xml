@@ -1,0 +1,8 @@
+<ALL>
+    <PROCESS_LIST>
+        <PROCESS Id="102" CommandLine="./agentmonitor_start.sh" Period="10" />
+		<PROCESS Id="102" CommandLine="./dtcmonitor_start.sh" Period="10" />
+        <PROCESS Id="104" CommandLine="./mem_stat_start.sh" Period="10" />
+		<PROCESS Id="105" CommandLine="./agent_stat_report.sh reporter" Period="10" />
+    </PROCESS_LIST>
+</ALL>

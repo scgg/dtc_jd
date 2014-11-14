@@ -1,0 +1,22 @@
+migrate_tools文件夹中的工具用于对ttc发动迁移命令。分为console和migrate_agent.console会向需要接收迁移的ttc所在的机器
+
+上的migrate_agent发送迁移任务。agent根据迁移任务进行具体的操作
+控制台:migrate_tools中的console子目录下
+./generate.py serverlist operate addlist name [migrate_config]
+generate脚本可以通过输入参数生成想要的迁移命令
+serverlist 为目前资源环的servername 跟ip对应表
+例如
+ttc1 127.0.0.1:9898/tcp
+operate目前只有两种add 和 del，分别用于删除或者增加server，如果是初始化可以add一个空的addlist
+addlist的格式与serverlist相同，里面为需要增加或者删除的ttc
+name为本次迁移操作的名字，用于后续回溯跟踪
+migrate_config为需要增加的配置信息，包括迁移速度，keytype等
+
+生成操作需要的所有目录
+
+迁移agent:接收控制台的命令，然后向ttc发送设置迁移状态及迁移命令，完成具体的迁移细节。包括设置为开始迁移，迁移key，
+
+设置readonly等等
+migrate_tools下面的migrate_agent直接运行就可以了，-l可以设置监听端口，-L可以设置log级别。agent最好默认启动。因为我 
+们内部协调agent使用9495端口。如果绑定其他端口，需要修改genrate.py脚本的migrate_agent_port变量
+

@@ -1,0 +1,2 @@
+protoc °æ±¾2.3.0
+protoc -I=E:\dtc_code\ttc_4-3-4\src\agent --cpp_out=E:\dtc_code\ttc_4-3-4\src\agent E:\dtc_code\ttc_4-3-4\src\agent\admin_protocol.proto

@@ -1,0 +1,40 @@
+﻿生成启动时间为 2014/11/11 18:14:27。
+     1>项目“E:\eclipse\windows_api\dtc_10_16_1\dtc_10_16_1.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DTC_10_16_1_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt java_dtc_request.cpp
+         java_dtc_request.cpp
+     1>e:\eclipse\windows_api\dtc_10_16_1\ttcapi.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\eclipse\windows_api\dtc_10_16_1\java_dtc_request.cpp(226): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+     1>e:\eclipse\windows_api\dtc_10_16_1\java_dtc_request.cpp(494): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+     1>e:\eclipse\windows_api\dtc_10_16_1\java_dtc_request.cpp(552): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+     1>e:\eclipse\windows_api\dtc_10_16_1\java_dtc_request.cpp(771): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\eclipse\windows_api\Debug\windows_api.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\eclipse\windows_api\Debug\windows_api.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\eclipse\windows_api\Debug\windows_api.lib" /MACHINE:X86 /DLL Debug\bitsop.obj
+         Debug\buffer.obj
+         Debug\compress.obj
+         Debug\field.obj
+         Debug\field_api.obj
+         Debug\indecode.obj
+         Debug\java_dtc_comm.obj
+         Debug\java_dtc_request.obj
+         Debug\java_dtc_result.obj
+         Debug\java_dtc_server.obj
+         Debug\keylist.obj
+         Debug\md5.obj
+         Debug\packet_base.obj
+         Debug\packet_client.obj
+         Debug\section.obj
+         Debug\sockaddr.obj
+         Debug\tabledef.obj
+         Debug\task_base.obj
+         Debug\task_const.obj
+         Debug\ttcreq.obj
+         Debug\ttcsrv.obj
+         Debug\ttcwrap.obj
+         Debug\value.obj
+         dtc_10_16_1.vcxproj -> E:\eclipse\windows_api\Debug\windows_api.dll
+     1>已完成生成项目“E:\eclipse\windows_api\dtc_10_16_1\dtc_10_16_1.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.14

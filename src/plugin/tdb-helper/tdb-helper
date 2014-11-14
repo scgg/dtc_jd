@@ -1,0 +1,3 @@
+#!/bin/sh
+export HELPER_SERVICE_FILE=./tdb-helper-service.so
+exec ./custom-helper $@

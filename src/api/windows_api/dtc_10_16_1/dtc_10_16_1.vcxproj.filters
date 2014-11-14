@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ttcapi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ttcint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="protocol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cache_error.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sockaddr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="atomicwindows.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="value.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="keylist.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tabledef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="section.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="field_api.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="task_base.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="compress.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="zconf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="timestamp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="packet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="indecode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="receiver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="field.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="bitsop.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="result.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="com_jd_dtc_api_Request.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="com_jd_dtc_api_Result.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="com_jd_dtc_api_Server.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="java_dtc_comm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="java_dtc_errcode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ttcsrv.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ttcwrap.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="value.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sockaddr.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ttcreq.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="keylist.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tabledef.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="section.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="field_api.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="task_base.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="compress.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="buffer.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="packet_client.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="packet_base.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="indecode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="field.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="bitsop.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="task_const.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="java_dtc_comm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="java_dtc_request.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="java_dtc_result.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="java_dtc_server.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

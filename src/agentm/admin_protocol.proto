@@ -1,0 +1,107 @@
+package ttc.agent;
+
+message AddCacheServerRequest
+{
+    required uint32 module = 1;
+	required uint32 instanceid = 2;
+    required string name = 3;
+    required string addr = 4;
+    optional int32 virtual_node = 5 [default = -1];
+}
+
+message AddModuleRequest
+{
+    required uint32 module = 1;
+    required string addr = 2;
+	required string accesstoken = 3;
+}
+
+message ChangeCacheServerAddrRequest
+{
+    required uint32 module = 1;
+    required string name = 2;
+    required string addr = 3;
+}
+
+message RemoveCacheServerRequest
+{
+    required uint32 module = 1;
+    required string name = 2;
+    optional int32 virtual_node = 3 [default = -1];
+}
+
+message RemoveModuleRequest
+{
+    required uint32 module = 1;
+}
+
+message ReloadConfigRequest
+{
+    required string config = 1;
+}
+
+message Reply
+{
+    required uint32 status = 1;
+    required string msg = 2;
+}
+
+message HeartBeat
+{
+    required string version = 1;
+    required uint32 configure_version = 2;
+    required string configure_md5 = 3;
+	required uint32 agent_id = 4;
+}
+
+message HeartBeatReply
+{
+    required uint32 latest_configure_version = 1;
+    required string latest_configure_md5 = 2;
+    optional bool push = 3 [default = false];
+}
+
+message GetLatestConfigure
+{
+    optional uint32 configure_version = 1;
+}
+
+message LatestConfigureReply
+{
+    required uint32 configure_version = 1;
+    required string configure = 2;
+}
+
+message UpdateConfigure
+{
+    required uint32 version = 1;
+    required string configure_cksum = 2;
+    required string configure = 3;
+}
+
+message UpdateConfigureReply
+{
+    required uint32 ok = 1;
+}
+
+message SetPush
+{
+    required uint32 push = 1;
+}
+
+message SetPushReply
+{
+    required uint32 ok = 1;
+}
+
+message QueryAgentStatus
+{
+	required uint32 id = 1;
+}
+
+message QueryAgentStatusReply
+{
+	required uint32 id = 1;
+	required uint32 dbtime = 2;
+	required uint32 lmtime = 3;
+}

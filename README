@@ -1,0 +1,15 @@
+1.src/prober/Makefile 64改为32
+2.src/3rdparty/curl/src/ tar -zxvf curl_7*.gz ,解压出curl-7.22.0;   打开readme.txt文件，拷贝里面内容，进入curl-7.22.0中，运行拷贝到内容，然后，make。
+然后cd lib,进入其中隐藏的.libs文件夹，其中的libcurl.a就是当前系统生成到最新静态库。
+3.将其替换 curl/lib/libcurl32.a中的文件，并重新命名为libcurl32.a
+4.在src中，make。此时,api/c_api/中生成 libdtc-gcc-*.so 为最新版本到dtc动态库，将其替换掉 3rdparty/dtc_api/lib32/下到动态库。
+5.重新 make
+
+
+
+
+//
+归根到底是动态库依赖操作系统版本，gcc版本,c++版本等等。4.在src中，make。此时,api/c_api/中生成 libdtc-gcc-*.so 为最新版本到dtc动态库，将其替换掉 3rdparty/dtc_api/lib32/下到动态库。
+
+
+
