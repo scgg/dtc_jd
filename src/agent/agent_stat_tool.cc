@@ -543,12 +543,12 @@ void SendToMonitor(ReportStatInfo &v)
 	statics["bid"] = Json::Value(v.uId);
 	for(uint32_t i = 0; i < REPORTNUM; i++)
 	{
-		if(reportParam[i].uCType != CONN_COUNT
-			&& reportParam[i].iData1 == 0)
-		{
-			log_info("iData1=0!");
-			continue;
-		}
+//		if(reportParam[i].uCType != CONN_COUNT
+//			&& reportParam[i].iData1 == 0)
+//		{
+//			log_info("iData1=0!");
+//			continue;
+//		}
 
 		Json::Value content;
 		//content["bid"] = Json::Value(reportParam[i].uAccessKey);

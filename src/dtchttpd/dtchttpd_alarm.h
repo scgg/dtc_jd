@@ -118,6 +118,7 @@ private:
 	long m_lLastInsertTime;
 	long m_lLastUpdateTime;
 	long m_lLastReportCpuTime;
+	std::string m_ip;
 
 private:
 	thread_cpu m_threadCpu;

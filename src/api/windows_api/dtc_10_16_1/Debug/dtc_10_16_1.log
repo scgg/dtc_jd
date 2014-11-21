@@ -1,15 +1,372 @@
-﻿生成启动时间为 2014/11/11 18:14:27。
-     1>项目“E:\eclipse\windows_api\dtc_10_16_1\dtc_10_16_1.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2014/11/17 20:40:18。
+     1>项目“E:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\dtc_10_16_1.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DTC_10_16_1_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt java_dtc_request.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DTC_10_16_1_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt bitsop.c md5.c value.c
+         value.c
+         md5.c
+         bitsop.c
+         正在生成代码...
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DTC_10_16_1_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt buffer.cc compress.cc field.cc field_api.cc indecode.cpp java_dtc_comm.cpp java_dtc_request.cpp java_dtc_result.cpp java_dtc_server.cpp keylist.cc packet_base.cc packet_client.cc section.cc sockaddr.cc tabledef.cc task_base.cc task_const.cc ttcreq.cc ttcsrv.cc ttcwrap.cc
+         ttcwrap.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcapi.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(237): warning C4005: “FD_SETSIZE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winsock2.h(122) : 参见“FD_SETSIZE”的前一个定义
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(53): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(81): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\task_base.h(21): warning C4005: “DELETE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winnt.h(8548) : 参见“DELETE”的前一个定义
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\compress.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcint.h(287): warning C4244: “return”: 从“const uint64_t”转换到“const int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcwrap.cc(213): warning C4150: 删除指向不完整“NCResultInternal”类型的指针；没有调用析构函数
+                 e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcint.h(21) : 参见“NCResultInternal”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcwrap.cc(309): warning C4244: “return”: 从“uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcwrap.cc(421): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+         ttcsrv.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(237): warning C4005: “FD_SETSIZE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winsock2.h(122) : 参见“FD_SETSIZE”的前一个定义
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(53): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(81): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\task_base.h(21): warning C4005: “DELETE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winnt.h(8548) : 参见“DELETE”的前一个定义
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\compress.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcint.h(287): warning C4244: “return”: 从“const uint64_t”转换到“const int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcsrv.cc(44): warning C4244: “初始化”: 从“time_t”转换到“unsigned int”，可能丢失数据
+         ttcreq.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(237): warning C4005: “FD_SETSIZE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winsock2.h(122) : 参见“FD_SETSIZE”的前一个定义
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(53): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(81): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\task_base.h(21): warning C4005: “DELETE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winnt.h(8548) : 参见“DELETE”的前一个定义
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\compress.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcint.h(287): warning C4244: “return”: 从“const uint64_t”转换到“const int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\timestamp.h(132): warning C4101: “wintime”: 未引用的局部变量
+         task_const.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\task_base.h(21): warning C4005: “DELETE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winnt.h(8548) : 参见“DELETE”的前一个定义
+         task_base.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\task_base.h(21): warning C4005: “DELETE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winnt.h(8548) : 参见“DELETE”的前一个定义
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(53): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(81): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\task_base.cc(163): warning C4244: “=”: 从“const uint16_t”转换到“uint8_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\task_base.cc(629): warning C4101: “err”: 未引用的局部变量
+         tabledef.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.cc : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(53): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(81): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.cc(146): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.cc(197): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.cc(247): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+         sockaddr.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\sockaddr.cc(149): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : 参见“sprintf”的声明
+         section.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+         packet_client.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(53): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(81): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\task_base.h(21): warning C4005: “DELETE”: 宏重定义
+                 c:\program files (x86)\windows kits\8.0\include\um\winnt.h(8548) : 参见“DELETE”的前一个定义
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\compress.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcint.h(287): warning C4244: “return”: 从“const uint64_t”转换到“const int”，可能丢失数据
+         packet_base.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\packet_base.cc(26): warning C4101: “rv”: 未引用的局部变量
+         keylist.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.cc : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.cc(52): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+         java_dtc_server.cpp
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcapi.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         java_dtc_result.cpp
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcapi.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\java_dtc_result.cpp(138): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
          java_dtc_request.cpp
-     1>e:\eclipse\windows_api\dtc_10_16_1\ttcapi.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-     1>e:\eclipse\windows_api\dtc_10_16_1\java_dtc_request.cpp(226): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
-     1>e:\eclipse\windows_api\dtc_10_16_1\java_dtc_request.cpp(494): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
-     1>e:\eclipse\windows_api\dtc_10_16_1\java_dtc_request.cpp(552): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
-     1>e:\eclipse\windows_api\dtc_10_16_1\java_dtc_request.cpp(771): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\ttcapi.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\java_dtc_request.cpp(226): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\java_dtc_request.cpp(494): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\java_dtc_request.cpp(552): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\java_dtc_request.cpp(771): warning C4244: “参数”: 从“jlong”转换到“int”，可能丢失数据
+         java_dtc_comm.cpp
+         indecode.cpp
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(53): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(81): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\indecode.cpp(61): warning C4309: “=”: 截断常量值
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\indecode.cpp(67): warning C4309: “=”: 截断常量值
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\indecode.cpp(73): warning C4309: “=”: 截断常量值
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\indecode.cpp(124): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : 参见“sprintf”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\indecode.cpp(180): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : 参见“sprintf”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\indecode.cpp(271): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(311) : 参见“sscanf”的声明
+         field_api.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(53): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field_api.h(81): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(251) : 参见“strnicmp”的声明
+         field.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field.cc : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\value.h(294): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+                 当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\keylist.h(20): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(249) : 参见“stricmp”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(230): warning C4244: “return”: 从“const uint64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(273): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(274): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(278): warning C4244: “return”: 从“const uint64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(291): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(311): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(327): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : 参见“strcpy”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(332): warning C4244: “return”: 从“const int64_t”转换到“int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(355): warning C4244: “return”: 从“const int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\section.h(359): warning C4244: “return”: 从“int64_t”转换到“uint32_t”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\tabledef.h(51): warning C4244: “return”: 从“const uint64_t”转换到“unsigned int”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field.cc(121): warning C4244: “=”: 从“const int64_t”转换到“double”，可能丢失数据
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\field.cc(123): warning C4244: “=”: 从“const uint64_t”转换到“double”，可能丢失数据
+         compress.cc
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\compress.cc : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\compress.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\compress.cc(82): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : 参见“sprintf”的声明
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\compress.cc(90): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : 参见“sprintf”的声明
+         buffer.cc
+         正在生成代码...
+     1>e:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\buffer.cc(43): warning C4717: “buffer::bprintf”: 如递归所有控件路径，函数将导致运行时堆栈溢出
        Link:
-         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\eclipse\windows_api\Debug\windows_api.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\eclipse\windows_api\Debug\windows_api.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\eclipse\windows_api\Debug\windows_api.lib" /MACHINE:X86 /DLL Debug\bitsop.obj
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\vs_test\ttc_4-3-4\src\api\windows_api\Debug\_dtc_java_api.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\vs_test\ttc_4-3-4\src\api\windows_api\Debug\_dtc_java_api.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\vs_test\ttc_4-3-4\src\api\windows_api\Debug\_dtc_java_api.lib" /MACHINE:X86 /DLL Debug\bitsop.obj
          Debug\buffer.obj
          Debug\compress.obj
          Debug\field.obj
@@ -32,9 +389,10 @@
          Debug\ttcsrv.obj
          Debug\ttcwrap.obj
          Debug\value.obj
-         dtc_10_16_1.vcxproj -> E:\eclipse\windows_api\Debug\windows_api.dll
-     1>已完成生成项目“E:\eclipse\windows_api\dtc_10_16_1\dtc_10_16_1.vcxproj”(Build 个目标)的操作。
+            正在创建库 E:\vs_test\ttc_4-3-4\src\api\windows_api\Debug\_dtc_java_api.lib 和对象 E:\vs_test\ttc_4-3-4\src\api\windows_api\Debug\_dtc_java_api.exp
+         dtc_10_16_1.vcxproj -> E:\vs_test\ttc_4-3-4\src\api\windows_api\Debug\_dtc_java_api.dll
+     1>已完成生成项目“E:\vs_test\ttc_4-3-4\src\api\windows_api\dtc_10_16_1\dtc_10_16_1.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:01.14
+已用时间 00:00:12.09

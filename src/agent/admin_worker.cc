@@ -147,7 +147,7 @@ void CAdminWorker::ProcessRequest() {
 		}
 		ProcessAddCacheServer(req.module(), req.instanceid(),
 				req.name().c_str(), req.addr().c_str(), req.virtual_node(),
-				req.hotbak_addr().c_str());
+				req.hotbak_addr().c_str(), req.mode());
 		break;
 	}
 
@@ -171,7 +171,7 @@ void CAdminWorker::ProcessRequest() {
 			return;
 		}
 		ProcessChangeCacheServerAddress(req.module(), req.name().c_str(),
-				req.addr().c_str(), req.hotbak_addr().c_str());
+				req.addr().c_str(), req.hotbak_addr().c_str(), req.mode());
 		break;
 	}
 
@@ -205,12 +205,15 @@ void CAdminWorker::ProcessRequest() {
 			delete this;
 			return;
 		}
-		log_debug("size:%d",req.data_size());
+		log_debug("size:%d", req.data_size());
+		if(req.mode()>1 || req.mode()<0)
+		{
+			ReplyWithMessage(InvalidArg, "error mode received");
+			break;
+		}
 		for (int i = 0; i < req.data_size(); i++) {
-			log_debug("busid:%d,name:%s,mode:%d", req.data(i).businessid(),
-					req.data(i).name().c_str(), req.mode());
-			ProcessSwitchCacheServer(req.data(i).businessid(),
-					req.data(i).name(), req.mode());
+			log_debug("busid:%d,name:%s,mode:%d", req.data(i).businessid(),req.data(i).name().c_str(), req.mode());
+			ProcessSwitchCacheServer(req.data(i).businessid(),req.data(i).name(), req.mode());
 		}
 		ReplyOk();
 		break;
@@ -279,19 +282,30 @@ void CAdminWorker::ProcessRemoveModule(uint32_t module) {
 
 void CAdminWorker::ProcessAddCacheServer(uint32_t module, uint32_t id,
 		const char *name, const char *addr, int virtualNode,
-		const char *hotbak_addr) {
+		const char *hotbak_addr, int mode) {
 	CModule *m = m_moduleMgr->FindModule(module);
 	if (!m) {
 		ReplyWithMessage(ModuleNotFound, "module not found");
 		return;
 	}
-
-	if (m->DispachAddCacheServer(name, addr, virtualNode, hotbak_addr) != 0) {
-		ReplyWithMessage(AdminFail, "add cache server failed");
+	if(mode>1 || mode <0)
+	{
+		ReplyWithMessage(InvalidArg, "error mode received");
 		return;
 	}
 
-	ConfigAddCacheServer(module, id, name, addr, hotbak_addr);
+	if (m->DispachAddCacheServer(name, addr, virtualNode, hotbak_addr, mode)
+			!= 0) {
+		ReplyWithMessage(AdminFail, "add cache server failed");
+		return;
+	}
+	std::string strmode;
+	if (mode == 0) {
+		strmode = "master";
+	} else {
+		strmode = "slave";
+	}
+	ConfigAddCacheServer(module, id, name, addr, hotbak_addr,strmode.c_str());
 	ReplyOk();
 }
 
@@ -312,8 +326,10 @@ void CAdminWorker::ProcessRemoveCacheServer(uint32_t module, const char *name,
 	ReplyOk();
 }
 
+/*
+ */
 void CAdminWorker::ProcessChangeCacheServerAddress(uint32_t module,
-		const char *name, const char *addr, const char *hotbak_addr) {
+		const char *name, const char *addr, const char *hotbak_addr, int mode) {
 	CModule *m = m_moduleMgr->FindModule(module);
 	if (!m) {
 		ReplyWithMessage(ModuleNotFound, "module not found");
@@ -324,9 +340,23 @@ void CAdminWorker::ProcessChangeCacheServerAddress(uint32_t module,
 		ReplyWithMessage(AdminFail, "cache server not found");
 		return;
 	}
+	if(mode>1 || mode <0)
+	{
+		ReplyWithMessage(InvalidArg, "error mode receive");
+		return;
+	}
 
-	m->DispachAddCacheServer(name, addr, ADMIN_ALL_POINTERS, hotbak_addr);
-	ConfigChangeCacheServerAddr(module, name, addr, hotbak_addr);
+	m->DispachAddCacheServer(name, addr, ADMIN_ALL_POINTERS, hotbak_addr,mode);
+	std::string strmode;
+	if (mode == 0) {
+		strmode = "master";
+	}
+	else if(mode == 1)
+	{
+		strmode = "slave";
+	}
+	ConfigChangeCacheServerAddr(module, name, addr, hotbak_addr,
+			strmode.c_str());
 	ReplyOk();
 }
 
@@ -381,6 +411,7 @@ void CAdminWorker::ProcessPing(CPollThreadGroup *threadgroup,
 
 void CAdminWorker::ProcessSwitchCacheServer(uint32_t module, std::string name,
 		uint32_t mode) {
+	std::string modeName;
 	CModule *m = m_moduleMgr->FindModule(module);
 	if (!m) {
 		//ReplyWithMessage(ModuleNotFound, "module not found");
@@ -391,5 +422,11 @@ void CAdminWorker::ProcessSwitchCacheServer(uint32_t module, std::string name,
 		ReplyWithMessage(AdminFail, "add cache server failed");
 		return;
 	}
+	if (mode == 0) {
+		modeName = "master";
+	} else {
+		modeName = "slave";
+	}
+	ConfigSwitchCacheServerAddr(module, name.c_str(), modeName.c_str());
 	//ReplyOk();
 }

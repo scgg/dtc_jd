@@ -6,7 +6,7 @@ get_db_time()
 	db_host=172.22.224.130
 	db_user=jd_ump
 	db_pass=ump@789
-	db_name=dtc_monitor
+	db_name=dtc_monitor_0
 	sql="select datetime from t_monitor_check where type=1000"
 	/usr/bin/mysql --connect-timeout 2 -s -h$db_host -u$db_user -p$db_pass $db_name -e "$sql"
 }

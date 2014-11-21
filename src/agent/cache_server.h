@@ -14,7 +14,7 @@ class CCacheServer {
 public:
 	CCacheServer(const std::string &name, const std::string &addr,
 			CModule *owner, CPollThreadGroup *m_threadgroup,
-			int connect_per_ttc, const std::string &hotbak_addr);
+			int connect_per_ttc, const std::string &hotbak_addr,int mode);
 	~CCacheServer();
 
 	int HandleRequest(const char *buf, int len, CPollThread *thread);
@@ -46,6 +46,7 @@ private:
 	std::string m_hotbak_addr;
 	CBackWorker *m_master_workers;
 	CBackWorker *m_hotbak_workers;
+	int m_mode;
 
 };
 

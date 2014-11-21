@@ -20,7 +20,7 @@ RESET=\\e[m
 #build ttc
 make
 
-cp ../src/3rdparty/dtc_api/lib64/libdtc-gcc-*.so ../agent_bin/
+#cp ../src/3rdparty/dtc_api/lib64/libdtc-gcc-*.so ../agent_bin/
 #ln -s  ../agent_bin/libdtc-gcc-*.so  ../agent_bin/libdtc.so
 version=`./../agent_bin/dtcagent -v | grep version | awk '{print $3}'`
 PLATFORM=`getconf LONG_BIT`
@@ -41,6 +41,20 @@ echo -e "${MAGENTA}MOVE agent_bin bin include lib conf TO DIST${RESET}"
 mv ../agent_bin ../conf ../lib ${dir}
 mkdir ${dir}/stat
 mkdir ${dir}/log
+mkdir ${dir}/tools
+
+
+mv ${dir}/agent_bin/agent_stat_tool ${dir}/tools
+mv ${dir}/agent_bin/agent_stat_report.sh ${dir}/tools
+mv ${dir}/agent_bin/agent_checkalive ${dir}/tools
+rm ${dir}/conf/cache.conf
+rm ${dir}/conf/crontab.xml
+rm ${dir}/conf/dtcalarm.conf
+rm ${dir}/conf/dtchttpd_example.conf
+rm ${dir}/conf/hbp.conf
+rm ${dir}/conf/monitor.conf
+rm ${dir}/conf/prober.xml
+rm ${dir}/conf/table.conf
 
 #if tgz is exsit delete it.delete directory first.
 if [ -f "$dir.tgz" ];then

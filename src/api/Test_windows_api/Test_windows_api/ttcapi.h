@@ -72,35 +72,35 @@ namespace TencentTableCache {
 
 			Server(void);
 			~Server(void);
-			Server(const Server &);
-			void CloneTabDef(const Server& source);
+//			Server(const Server &);
+//			void CloneTabDef(const Server& source);
 			int SetAddress(const char *host, const char *port=0);
 			int SetTableName(const char *);
             //for compress
-            void SetCompressLevel(int);
+ //           void SetCompressLevel(int);
             //get address and tablename set by user
-			const char * GetAddress(void) const;
-			const char * GetTableName(void) const;
+//			const char * GetAddress(void) const;
+//			const char * GetTableName(void) const;
             //get address and tablename set by ttc frame,for plugin only;
-			const char * GetServerAddress(void) const;
-			const char * GetServerTableName(void) const;
+//			const char * GetServerAddress(void) const;
+//			const char * GetServerTableName(void) const;
 			int IntKey(void);
 			int BinaryKey(void);
 			int StringKey(void);
-			int AddKey(const char* name, int type);
-			int FieldType(const char* name);
-			const char *ErrorMessage(void) const;
+//			int AddKey(const char* name, int type);
+//			int FieldType(const char* name);
+//			const char *ErrorMessage(void) const;
 			void SetTimeout(int);
-			void SetMTimeout(int);
-			int Connect(void);
-			void Close(void);
-			int Ping(void);
-			void AutoPing(void);
-			void SetFD(int); // UNSUPPORTED API
-			void SetAutoUpdateTab(bool autoUpdate);
-			void SetAutoReconnect(int autoReconnect);
-			int DecodePacket(Result &, const char *, int);
-			int CheckPacketSize(const char *, int);
+//			void SetMTimeout(int);
+//			int Connect(void);
+//			void Close(void);
+//			int Ping(void);
+//			void AutoPing(void);
+//			void SetFD(int); // UNSUPPORTED API
+//			void SetAutoUpdateTab(bool autoUpdate);
+//			void SetAutoReconnect(int autoReconnect);
+//			int DecodePacket(Result &, const char *, int);
+//			int CheckPacketSize(const char *, int);
 
 			void SetAccessKey(const char *token);
 	};
@@ -118,9 +118,9 @@ namespace TencentTableCache {
 			Request(Server *srv, int op);
 			Request(void);
 			~Request(void);
-			void Reset(void);
-			void Reset(int);
-			int AttachServer(Server *srv);
+//			void Reset(void);
+//			void Reset(int);
+//			int AttachServer(Server *srv);
 
 			void SetAdminCode(int code);
 			void SetHotBackupID(long long);
@@ -131,10 +131,10 @@ namespace TencentTableCache {
 #define _REDIRF_(op, t) int op(const char *n, t a) { return op(n, (double)a); }
 			int Need(const char *);
 			int Need(const char *, int);
-			int FieldType(const char*);
-			void NoCache(void);
-			void NoNextServer(void);
-			void Limit(unsigned int, unsigned int);
+//			int FieldType(const char*);
+//			void NoCache(void);
+//			void NoNextServer(void);
+//			void Limit(unsigned int, unsigned int);
 			
 			int EQ(const char *, long long);
 			int NE(const char *, long long);
@@ -220,9 +220,9 @@ namespace TencentTableCache {
 			int Set(const char *, const char *, int);
 
             //just for compress,only support binary field
-			int CompressSet(const char *, const char *, int);
+//			int CompressSet(const char *, const char *, int);
 			//just compress and set. Don't need compressflag
-			int CompressSetForce(const char *, const char *, int);
+//			int CompressSetForce(const char *, const char *, int);
 
 			//bits op
 			int SetMultiBits(const char *, int, int, unsigned int);
@@ -275,7 +275,7 @@ namespace TencentTableCache {
 			
 #undef _REDIR_
 
-			void UnsetKey(void);
+//			void UnsetKey(void);
 			int SetKey(long long);
 			int SetKey(const char *);
 			int SetKey(const char *, int);
@@ -375,7 +375,7 @@ namespace TencentTableCache {
 			_REDIR_(unsigned char);
 #undef _REDIR_
 			
-            const char *ErrorMessage(void) const;
+//            const char *ErrorMessage(void) const;
 	};
 
 	class __EXPORT GetRequest : public Request {
@@ -450,38 +450,31 @@ namespace TencentTableCache {
 			~Result(void);
 			void Reset(void);
 
-			void SetError(int errcode, const char *from, const char *detail); // from will not dupped
+//			void SetError(int errcode, const char *from, const char *detail); // from will not dupped
 			int ResultCode(void) const;
-			const char *ErrorMessage(void) const;
-			const char *ErrorFrom(void) const;
+//			const char *ErrorMessage(void) const;
+//			const char *ErrorFrom(void) const;
 			long long HotBackupID() const;
 			long long MasterHBTimestamp() const;
 			long long SlaveHBTimestamp() const;
-			long long BinlogID() const;
-			long long BinlogOffset() const;
-			long long MemSize() const;
-			long long DataSize() const;
+//			long long BinlogID() const;
+//			long long BinlogOffset() const;
+//			long long MemSize() const;
+//			long long DataSize() const;
 			int NumRows(void) const;
-			int TotalRows(void) const;
+//			int TotalRows(void) const;
 			int AffectedRows(void) const;
-			int NumFields(void) const;
-			const char* FieldName(int n) const;
-			int FieldPresent(const char* name) const;
-			int FieldType(int n) const;
+//			int NumFields(void) const;
+//			const char* FieldName(int n) const;
+//			int FieldPresent(const char* name) const;
+//			int FieldType(int n) const;
 			long long Tag(void) const;
 			void *TagPtr(void) const;
 			long long Magic(void) const;
 			long long ServerTimestamp(void) const;
-			long long InsertID(void) const;
-			long long IntKey(void) const;
-			const char *BinaryKey(void) const;
-			const char *BinaryKey(int *) const;
-			const char *BinaryKey(int &) const;
-			const char *StringKey(void) const;
-			const char *StringKey(int *) const;
-			const char *StringKey(int &) const;
+
 			long long IntValue(const char *) const;
-			double FloatValue(const char *) const;
+//			double FloatValue(const char *) const;
 			const char *StringValue(const char *) const;
 			const char *StringValue(const char *, int*) const;
 			const char *StringValue(const char *, int&) const;
@@ -492,16 +485,16 @@ namespace TencentTableCache {
 			//Uncompress Binary Value without check compressflag
 			int UnCompressBinaryValueForce(const char *name,char **buf,int *lenp);
             const char * UnCompressErrorMessage() const;
-			long long IntValue(int) const;
-			double FloatValue(int) const;
+//			long long IntValue(int) const;
+//			double FloatValue(int) const;
 			const char *StringValue(int) const;
 			const char *StringValue(int, int*) const;
 			const char *StringValue(int, int&) const;
-			const char *BinaryValue(int) const;
+//			const char *BinaryValue(int) const;
 			const char *BinaryValue(int, int*) const;
 			const char *BinaryValue(int, int&) const;
 			int FetchRow(void);
-			int Rewind(void);
+//			int Rewind(void);
 	};
 
 	class __EXPORT ServerPool {

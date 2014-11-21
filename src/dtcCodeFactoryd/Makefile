@@ -9,7 +9,7 @@ endif
 ifeq "$(SVN_REVISION)a" "a"
 	SVN_REVISION = "(unknown)"
 endif
-GIT_VERSION=$(shell git log | head -n 4 | grep "commit" | cut -d " " -f 2 | cut -c 1-7)
+GIT_VERSION=$(shell git log . | head -n 4 | grep "commit" | cut -d " " -f 2 | cut -c 1-7)
 $(shell sed -i '8s/"[^"]*"/"$(GIT_VERSION)"/' dtcCodeFactoryd_version.h)
 
 VPATH := ../3rdparty/tinyxml ../3rdparty/http_service

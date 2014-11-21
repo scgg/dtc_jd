@@ -1,10 +1,10 @@
 #include <unistd.h>
 
-static volatile int agentRunning = 1;
+static volatile int httpdRunning = 1;
 
 static void sigterm_handler(int signo)
 {
-    agentRunning = 0;
+    httpdRunning = 0;
 }
 
 static void daemon_start()

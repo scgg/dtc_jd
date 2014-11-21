@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ALL>
-	<PROBER_CONFIG LogLevel="7" ListenOn="*:8383" />
+	<PROBER_CONFIG LogLevel="3" ListenOn="*:8383" Worker="4" Queue="3"/>
 	<CMDLIST>
 		<CMD Id="10001" ClassName="CMemoryUsageCmd" />
 		<CMD Id="10002" ClassName="HistoryNodeSizeDsitributeCmd"  />
@@ -12,5 +12,6 @@
 		<CMD Id="50004" ClassName="CurrentLastAccDistributeCmd"  />
 		<CMD Id="50005" ClassName="CurrentDirtyCleanPercentCmd"  />
 		<CMD Id="50006" ClassName="CurrentDirtyDistributeCmd"  />
+		<CMD Id="50007" ClassName="CurrentNodeSurvivalTimeDistributeCmd"  />
 	</CMDLIST>
 </ALL>

@@ -30,7 +30,7 @@ public:
 
 	/* admin*/
 	int AddCacheServer(CPollThread * thread,const std::string &name,
-		const std::string &addr, int virtualNode,const std::string &hotbak_addr);
+		const std::string &addr, int virtualNode,const std::string &hotbak_addr,int mode);
 	int RemoveCacheServer(CPollThread * thread, const std::string &name,
 			int virtualNode);
 
@@ -61,7 +61,7 @@ public:
 	int DispachCloseFd();
 	int ReleseAllFrontWorker(CPollThread *thread);
 	int DispachAddCacheServer(const std::string &name,
-			const std::string &addr, int virtualNode,const std::string &hotbak_addr);
+			const std::string &addr, int virtualNode,const std::string &hotbak_addr,int mode);
 	int DispachRemoveCacheServer(const std::string &name, int virtualNode);
 	int DispachRelaseAllCacheServer();
 	int RelaseAllCacheServer(CPollThread * thread);

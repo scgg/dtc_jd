@@ -1,9 +1,9 @@
 #ifndef __DTC_PROBERD_VERSION_H
 #define __DTC_PROBERD_VERSION_H
 
-#define DTC_PROBERD_VERSION "1.0.1"
+#define DTC_PROBERD_VERSION "2.0.0"
 /* the following line show be exactly line 6 */
-#define DTC_PROBERD_GIT_VERSION "7bf6dcc"
+#define DTC_PROBERD_GIT_VERSION "32e9a0b"
 
 const char compdatestr[] = __DATE__;
 const char comptimestr[] = __TIME__;

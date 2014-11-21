@@ -53,7 +53,7 @@ report()
 		fi
 	#无源模式
 	elif  [[ $DisableDataSource == 1 ]] ; then
-		./hotbackup.sh start > /dev/null
+		./hotbackup.sh start 2>&1 > /dev/null
 		if [[ $ttcd_num == 2 ]] ; then
 			#echo "success_report_url=$success_report_url"
 			curl $success_report_url

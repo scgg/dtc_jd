@@ -69,11 +69,11 @@ int CModule::Listen(const std::string &listenOn) {
 }
 
 int CModule::AddCacheServer(CPollThread * thread,const std::string &name,
-	const std::string &addr, int virtualNode,const std::string &hotbak_addr) {
+	const std::string &addr, int virtualNode,const std::string &hotbak_addr,int mode) {
 	int threadId = this->m_threadgroup->GetPollThreadIndex(thread);
 	int connect_per_ttc = m_gConfigObj->GetIntVal("agent", "ConnectPerTtc",1);
 	log_debug("the connect_per_ttc is %d", connect_per_ttc);
-	CCacheServer *s = new CCacheServer(name, addr, this, m_threadgroup,connect_per_ttc,hotbak_addr);
+	CCacheServer *s = new CCacheServer(name, addr, this, m_threadgroup,connect_per_ttc,hotbak_addr,mode);
 	m_cacheServers[threadId][name] = s;
 
 	if (virtualNode == ADMIN_ALL_POINTERS)
@@ -254,7 +254,7 @@ int CModule::DispachCloseFd() {
 }
 
 int CModule::DispachAddCacheServer(const std::string &name,
-		const std::string &addr, int virtualNode,const std::string &hotbak_addr) {
+		const std::string &addr, int virtualNode,const std::string &hotbak_addr,int mode) {
 	log_debug("enter DispachAddCacheServer %s,%s,%d",name.c_str(),addr.c_str(),virtualNode);
 	for(int i=0;i<m_threadgroup->GetPollThreadSize();i++)
 	{
@@ -270,6 +270,7 @@ int CModule::DispachAddCacheServer(const std::string &name,
 	dTask->SetAddress(addr);
 	dTask->SetVirtualNode(virtualNode);
 	dTask->SetHotBackupAddress(hotbak_addr);
+	dTask->SetMode(mode);
 	//同步模式
 	dTask->SetSyncFlag(1);
 	for (int i = 0; i < m_threadgroup->GetPollThreadSize(); i++) {
@@ -382,7 +383,7 @@ int CModule::SetCascadeAgentServer(const std::string &name,
 	this->darkLaunchPercentage = dkPercent;
 	int connect_per_ttc = m_gConfigObj->GetIntVal("agent", "ConnectPerTtc", 1);
 	CCacheServer *s = new CCacheServer(name, addr, this, m_threadgroup,
-			connect_per_ttc,"");
+			connect_per_ttc,"",0);
 	this->m_agentServer = CCacheServerHolder(s);
 	return 0;
 }

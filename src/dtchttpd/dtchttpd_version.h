@@ -5,9 +5,9 @@
 
 #define PRG_NAME        "dtchttpd"
 #define MAIN_VERSION    "1"
-#define SECOND_VERSION  "2"
+#define SECOND_VERSION  "4"
 #define FIX_VERSION     "0"
-#define GIT_VERSION     "7af30c5b07bdaa25f379edc66154a16aa2a9529a"
+#define GIT_VERSION     "fbb85e9055efcbe8af9037ee0f3e4311ef9a365f"
 
 void ShowVersion()
 {

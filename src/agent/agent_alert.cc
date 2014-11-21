@@ -486,7 +486,7 @@ bool AgentAlert::ScanCpuThreadStat(unsigned int &ratio, std::string &thread_name
 
 }
 
-bool AgentAlert::AlarmToPlatform(long val1, long val2,  const std::string &threadName, unsigned int type)
+bool AgentAlert::AlarmToPlatform(long val1, long val2, const std::string &threadName, unsigned int type)
 {
 	
 	Json::Value innerBody;
@@ -497,38 +497,38 @@ bool AgentAlert::AlarmToPlatform(long val1, long val2,  const std::string &threa
 	case FD_ALARM:
 		{
 			innerBody["alarm_title"] = "Agent fd Alarm";
-			oss << "Agent already used FD nums: " << val1 << ",exceed the threshold: " << val2;
+			oss <<"ip:"<< mipaddr<<" ,Agent already used FD nums: " << val1 << ",exceed the threshold: " << val2;
 			break;
 		}
 	case MEM_ALARM:
 		{
 			 innerBody["alarm_title"] = "Agent memory Alarm";
-			 oss << "Agent machine already used memory: " << val1 << " KB,exceed the threshold: " << val2 << "KB";
+			 oss << "ip;"<< mipaddr<<" ,Agent machine already used memory: " << val1 << " KB,exceed the threshold: " << val2 << "KB";
 			break;
 		}
 	case CPU_ALARM:
 		{
 			 innerBody["alarm_title"] = "Agent cpu Alarm";
-			 oss << "Agent cpu alert, thread: " << threadName << " now has reached: " << val1/100 << " percent";
+			 oss <<"ip:"<<mipaddr<<" ,Agent cpu alert, thread: " << threadName << " now has reached: " << val1/100 << " percent";
 			break;
 		}
 	case NET_ALARM:
 		{
 			 innerBody["alarm_title"] = "Agent Net Alarm";
-			 oss << "Agent current network flow: " << val1 << "MB/s, exceed the threshold: " << val2 << "MB/s";
+			 oss <<"ip:"<<mipaddr<<" ,Agent current network flow: " << val1 << "MB/s, exceed the threshold: " << val2 << "MB/s";
 			break;
 		}
 	case PROCESS_ALARM:
 		{
 			innerBody["alarm_title"] = "Agent process crashed Alarm";
 			if(val2 == 1){
-				oss<<"Agent child process has crashed, the exit code: "<<val1;
+				oss<<"ip:"<<mipaddr<<" ,Agent child process has crashed, the exit code: "<<val1;
 			}
 			else if (val2 == 2){
-				oss<< "Agent child process has crashed, killed by signal: " << val1;
+				oss<<"ip:"<<mipaddr<< " ,Agent child process has crashed, killed by signal: " << val1;
 			}
 			else{
-				oss<<"Agent child process has crashed!";
+				oss<<"ip:"<<mipaddr<<" ,Agent child process has crashed!";
 			}
 			break;
 		}

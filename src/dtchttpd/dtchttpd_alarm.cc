@@ -10,6 +10,9 @@
 #include <fcntl.h>
 #include <sys/param.h>
 #include <stdlib.h>
+#include "config.h"
+
+extern dtchttpd::CConfig g_storage_config;
 
 using namespace dtchttpd;
 
@@ -22,8 +25,15 @@ int thread_cpu::init(int core_num)
 		add_cpu_stat_object(threadName, 8000);
 	}
 	add_cpu_stat_object("join1", 8000);
-	add_cpu_stat_object("join1", 8000);
-	add_cpu_stat_object("write", 8000);
+	add_cpu_stat_object(g_storage_config.GetGroupRouterName().c_str(), 6000);
+	for (int i=0; i<g_storage_config.GetMachineNum(); i++)
+	{
+		for(int j=0; j<g_storage_config.GetHelperGroupConfig(i)->helper_num; j++)
+		{
+			snprintf(threadName, sizeof(threadName), g_storage_config.GetGroupName().append("@%d@%d").c_str(), i, j);
+			add_cpu_stat_object(threadName, 6000);
+		}
+	}
 	return 0;
 }
 
@@ -286,6 +296,7 @@ bool Alarm::ReportToPlatform(int alarm_type, uint32_t val1, uint32_t val2)
     }
 	//set value
 	config.GetStringValue("report_url", m_strURL);
+	config.GetStringValue("report_ip", m_ip);
 	config.GetStringValue("report_phone", m_strPhoneNums);
 	if (m_strURL.empty() || m_strPhoneNums.empty())
 	{
@@ -300,6 +311,7 @@ bool Alarm::ReportToPlatform(int alarm_type, uint32_t val1, uint32_t val2)
 	Json::Value innerBody;
 	innerBody["alarm_list"] = m_strPhoneNums;
 	std::stringstream oss;
+	oss << m_ip << " ";
 	switch(alarm_type)
 	{
 		case WAIT_PID_FAIL:

@@ -49,8 +49,31 @@ void  DtcStatAlarmReporter::InitModuleId()
 	m_ddwModuleId = ParseModuleId(std::string(buf));
 	
 }
+/*优先尝试从/usr/local/dtc/ip读取本机的ip，如果该文件没有ip，则在使用GetLocalIp函数获取本机Ip*/
 void DtcStatAlarmReporter::InitLocalId()
 {
+	std::string strIpFilePath("/usr/local/dtc/ip");
+	
+	std::ifstream file;	
+	file.open(strIpFilePath.c_str(), std::ios::in);
+	if (file.fail())
+	{	
+		log_error("open file %s fail", strIpFilePath.c_str());
+		m_DtcIp = dtc::utils::GetLocalIP();
+		return;
+	}
+	std::string strLine;		
+	while(std::getline(file, strLine))
+	{
+		if (!strLine.empty())
+		{
+			m_DtcIp = strLine;
+			log_debug("dtc ip is %s", m_DtcIp.c_str());
+			return;
+		}
+		
+	}
+	
 	m_DtcIp = dtc::utils::GetLocalIP();
 }
 bool DtcStatAlarmReporter::parseAlarmCfg(uint64_t ddwStatId, const std::string& strCfgItem, AlarmCfg& cfg)
@@ -260,6 +283,7 @@ void DtcStatAlarmReporter::PostAlarm(const std::string& strAlarmContent)
 	CurlHttp curlHttp;
 	BuffV buf;
 	curlHttp.SetTimeout(m_PostTimeOut);
+	log_debug("Post Alarm  %s", oss.str().c_str());
 	int ret = curlHttp.HttpRequest(oss.str(), &buf, false, "application/x-www-form-urlencoded");
 	if (0 != ret)
 	{

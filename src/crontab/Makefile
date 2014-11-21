@@ -15,6 +15,20 @@ else
 BITS=32
 endif
 
+#增加版本及编译基本信息
+GIT_VERSION=$(shell git log | head -n 4 | grep "commit" | cut -d " " -f 2 | cut -c 1-7)
+$(shell sed -i '11s/"[^"]*"/"$(GIT_VERSION)"/' Version.h)
+
+DATE=$(shell git show | head -n 4 | grep Date | cut -b 9-30)
+$(shell sed -i '12s/"[^"]*"/"$(DATE)"/' Version.h)
+
+AUTHOR=$(shell git show | head -n 4 | grep Author | cut -d " " -f 2)
+$(shell sed -i '13s/"[^"]*"/"$(AUTHOR)"/' Version.h)
+
+COMPILEDATE=$(shell date)
+$(shell sed -i '14s/"[^"]*"/"$(COMPILEDATE)"/' Version.h)
+
+
 VPATH := ../3rdparty/tinyxml ../3rdparty/http_service ../stat
 
 CFLAGS+=-DSVN_REVISION=$(SVN_REVISION) -I../common -I../watchdog -I../3rdparty/tinyxml
@@ -33,6 +47,6 @@ test_libs := -L../common -L../3rdparty/attr_api -lcommon -ldl -lattr_api_$(BITS)
 test: LDFLAGS+=-pthread
 
 ################install##############
-target_install = dtccrontab
+target_install = dtccrontab dtccrontab_start.sh
 install_dir = ../../agent_bin
 include ../Make.rules

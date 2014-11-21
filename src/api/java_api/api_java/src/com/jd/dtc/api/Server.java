@@ -6,9 +6,12 @@ import java.util.Map;
 
 
 public class Server {
-	
 	static{
-		System.load("/usr/lib/lib_dtc_java_api.so");
+		String OS = System.getProperty("os.name".toLowerCase());
+		if(OS.contains("windows"))
+			System.loadLibrary("_dtc_java_api");
+		else
+			System.load("/usr/lib/lib_dtc_java_api.so");
 	}
 	public Server(int id) {
 		this.id = id;

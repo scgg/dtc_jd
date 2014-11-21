@@ -11,11 +11,11 @@
 #include "log.h"
 
 enum {
-	FD_ALARM        =  1, //fd
-	MEM_ALARM       =  2,  //memory
-	CPU_ALARM       =  3,  //cpu
-	NET_ALARM       =  4, // net dev
-	PROCESS_ALARM   =  5, //child process core
+	FD_ALARM = 1, //fd
+	MEM_ALARM = 2,  //memory
+	CPU_ALARM = 3,  //cpu
+	NET_ALARM = 4, // net dev
+	PROCESS_ALARM = 5, //child process core
 };
 
 #define THREAD_CPU_STAT_MAX_ERR 6
@@ -25,7 +25,7 @@ enum {
 #define CPU_STAT_FINE 3
 #define CPU_STAT_ILL 4
 
-struct one_agent_thread_cpu{
+struct one_agent_thread_cpu {
 	int _fd;        //proc fd thread hold
 	int _pid;       //thread pid
 	const char * _thread_name;
@@ -44,17 +44,15 @@ public:
 	void do_stat();
 };
 
-class agent_thread_cpu
-{
+class agent_thread_cpu {
 private:
 	one_agent_thread_cpu *_stat_list_head;
 public:
-	agent_thread_cpu()
-	{
+	agent_thread_cpu() {
 		_stat_list_head = NULL;
 	}
-	~agent_thread_cpu()
-	{}
+	~agent_thread_cpu() {
+	}
 	int init(int workerNum);
 	void do_stat();
 	bool get_cpu_stat(unsigned int &ratio, std::string &thread_name);
@@ -65,26 +63,26 @@ private:
 	static const unsigned int cpuLimit = 8000;
 };
 
-
-class AgentAlert
-{
+class AgentAlert {
 
 public:
-	static AgentAlert &GetInstance()
-	{
+	static AgentAlert &GetInstance() {
 		static AgentAlert instance;
 		return instance;
 	}
 
-	static  bool splitString(const std::string &str, const std::string &delim, std::vector<std::string> &vec);
-	int  DaemonGetFdLimit();
-	static bool splitString2(const std::string &str ,std::vector<std::string> &vec);
+	static bool splitString(const std::string &str, const std::string &delim,
+			std::vector<std::string> &vec);
+	int DaemonGetFdLimit();
+	static bool splitString2(const std::string &str,
+			std::vector<std::string> &vec);
 public:
 	/* 扫描进程已打开的文件句柄数 */
 	unsigned int ScanProcessOpenningFD(void);
 
 	/*查看网卡信息，网络流量*/
-	unsigned int ScanNetDevFlowing(unsigned long &flowPerSecond, unsigned long &flowThreshold);
+	unsigned int ScanNetDevFlowing(unsigned long &flowPerSecond,
+			unsigned long &flowThreshold);
 
 	/*查看内存使用大小, usedMemory 小于 80%的totalMemory*/
 	bool ScanMemoryUsed(unsigned int &total, unsigned int &used);
@@ -92,99 +90,95 @@ public:
 	/*查看线程cpu使用率*/
 	bool ScanCpuThreadStat(unsigned int &ratio, std::string &thread_name);
 
-	bool AlarmToPlatform(long val1, long val2,  const std::string &threadName, unsigned int type = 0);
+	bool AlarmToPlatform(long val1, long val2,
+			const std::string &threadName, unsigned int type = 0);
 
-	void setContacts(const std::string &phone_list)
-	{
+	void setContacts(const std::string &phone_list) {
 		mContacts = phone_list;
 	}
-	void setUrl(const std::string &urlParam)
-	{
+	void setUrl(const std::string &urlParam) {
 		mUrl = urlParam;
 	}
 
-	std::string getContacts()
-	{
+	std::string getContacts() {
 		return mContacts;
 	}
 
-	std::string getUrl()
-	{
+	std::string getUrl() {
 		return mUrl;
 	}
 
-	void setNetFlow(unsigned int flow)
-	{
+	void setNetFlow(unsigned int flow) {
 		mnetFlow = flow;
 	}
 
-	unsigned int  getNetFlow()
-	{
+	unsigned int getNetFlow() {
 		return mnetFlow;
 	}
 
-	void setEthernet(const std::string &ethernet)
-	{
+	void setEthernet(const std::string &ethernet) {
 		mEthernet = ethernet;
 	}
 
-	std::string getEthernet()
-	{
+	std::string getEthernet() {
 		return mEthernet;
 	}
-	void setWorkerNum(unsigned int workerNum)
-	{
+	void setWorkerNum(unsigned int workerNum) {
 		mWorkerNum = workerNum;
 	}
 
-	unsigned int getWorkerNum()
-	{
+	unsigned int getWorkerNum() {
 		return mWorkerNum;
 	}
-	void setFdLimit(unsigned int FdLimit)
-	{
+	void setFdLimit(unsigned int FdLimit) {
 		mFdLimit = FdLimit;
 	}
 
-	unsigned int getFdLimit()
-	{
+	unsigned int getFdLimit() {
 		return mFdLimit;
 	}
-	int alertInit()
-	{
+	void setIpaddr(const std::string ipaddr) {
+		this->mipaddr = ipaddr;
+	}
+	std::string getIpaddr() {
+		return mipaddr;
+	}
+	int alertInit() {
 		int fdNum = DaemonGetFdLimit();
-		if(fdNum < 0){
+		if (fdNum < 0) {
 			mFdLimit = 1024;
-		}
-		else{
+		} else {
 			mFdLimit = fdNum;
 		}
 		int ret = cpu_stat.init(mWorkerNum);
 
 		std::ifstream fin("/proc/net/dev");
 		std::string line;
-		while(std::getline(fin, line)){
+		while (std::getline(fin, line)) {
 			std::vector<std::string> vec;
 			splitString2(line, vec);
 			std::stringstream oss;
 			oss << mEthernet << ":";
-			if(vec.size() > 0 && vec[0] == oss.str()){
+			if (vec.size() > 0 && vec[0] == oss.str()) {
 				mLastRecv = atoll(vec[1].c_str());
 				mLastTran = atoll(vec[9].c_str());
 				mLastTime = time(NULL);
-				log_info("receiveBytes:[%llu], sendBytes:[%llu]", mLastRecv, mLastTran);
+				log_info("receiveBytes:[%llu], sendBytes:[%llu]", mLastRecv,
+						mLastTran);
 				break;
 			}
 		}
 		return ret;
 	}
 private:
-	AgentAlert() {};
+	AgentAlert() {
+	}
+	;
 	AgentAlert(const AgentAlert&);
-	AgentAlert &operator = (const AgentAlert&);
+	AgentAlert &operator =(const AgentAlert&);
 
 private:
-	std::string mContacts;//delim by ";"
+	std::string mContacts;           //delim by ";"
 	std::string mUrl;
 	unsigned int mnetFlow;
 	std::string mEthernet;
@@ -194,11 +188,10 @@ private:
 	//网卡前一次的接收字节数和发送字节数
 	unsigned long long mLastRecv;
 	unsigned long long mLastTran;
-	time_t             mLastTime;
+	time_t mLastTime;
 	agent_thread_cpu cpu_stat;
-	
+	std::string mipaddr;
 
 };
-
 
 #endif

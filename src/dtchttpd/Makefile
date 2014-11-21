@@ -24,8 +24,9 @@ TTC_API_LIB = ../3rdparty/dtc_api/libdtc-gcc-4.4-rf588dad.so
 target = dtchttpd
 
 dtchttpd_list := stream_receiver sender http_client_response_decoder main fd_transfer session \
-				http_agent_request_msg http_agent_response_msg http_agent_error_code \
-		 join msg_parser mysql_manager curve write_data fk_config dtchttpd_alarm curl_http
+		 storage_manager config http_agent_request_msg http_agent_response_msg http_agent_error_code \
+		 join msg_parser mysql_manager fk_config dtchttpd_alarm curl_http group_router \
+		 helper_client helper_group 
 dtchttpd_objs := $(patsubst %,%.o,$(dtchttpd_list))
 dtchttpd_libs := -L../common -lcommon $(JSON_LIB) $(MYSQLLIB) $(CURL_LIB)
 dtchttpd: LDFLAGS+=-pthread

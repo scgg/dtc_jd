@@ -88,6 +88,7 @@ private:
 	std::string address;
 	int virtualNode;
 	std::string hotbak_addr;
+	int mode;
 public:
 	void SetModule(CModule *m) {
 		this->_module = m;
@@ -118,6 +119,14 @@ public:
 	}
 	std::string GetHotBackupAddress() {
 		return this->hotbak_addr;
+	}
+	void SetMode(int mode)
+	{
+		this->mode=mode;
+	}
+	int GetMode()
+	{
+		return this->mode;
 	}
 };
 

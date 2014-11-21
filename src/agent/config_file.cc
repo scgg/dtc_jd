@@ -72,7 +72,7 @@ int ConfigRemoveModule(int module) {
 }
 
 int ConfigAddCacheServer(int module, int id, const char *name, const char *addr,
-		const char *hotbak_addr) {
+		const char *hotbak_addr, const char *locate) {
 	TiXmlDocument xml;
 	if (!xml.LoadFile(gConfig)) {
 		log_error("load %s failed, errmsg: %s, row: %d, col: %d", gConfig,
@@ -93,6 +93,7 @@ int ConfigAddCacheServer(int module, int id, const char *name, const char *addr,
 	node->SetAttribute("Name", name);
 	node->SetAttribute("Addr", addr);
 	node->SetAttribute("HotBackupAddr", hotbak_addr);
+	node->SetAttribute("Locate", locate);
 
 	m->LinkEndChild(node);
 
@@ -138,7 +139,7 @@ int ConfigRemoveCacheServer(int module, const char *name) {
 }
 
 int ConfigChangeCacheServerAddr(int module, const char *name, const char *addr,
-		const char *hotbak_addr) {
+		const char *hotbak_addr, const char *locate) {
 	TiXmlDocument xml;
 	if (!xml.LoadFile(gConfig)) {
 		log_error("load %s failed, errmsg: %s, row: %d, col: %d", gConfig,
@@ -162,6 +163,7 @@ int ConfigChangeCacheServerAddr(int module, const char *name, const char *addr,
 
 	server->SetAttribute("Addr", addr);
 	server->SetAttribute("HotBackupAddr", hotbak_addr);
+	server->SetAttribute("Locate", locate);
 	xml.SaveFile();
 	return 0;
 }
@@ -317,5 +319,33 @@ std::string ConfigGetCksum() {
 	str[sizeof(digest) * 2] = 0;
 
 	return str;
+}
+
+int ConfigSwitchCacheServerAddr(int module, const char *name,
+		const char *locate) {
+	TiXmlDocument xml;
+	if (!xml.LoadFile(gConfig)) {
+		log_error("load %s failed, errmsg: %s, row: %d, col: %d", gConfig,
+				xml.ErrorDesc(), xml.ErrorRow(), xml.ErrorCol());
+		return -1;
+	}
+
+	TiXmlElement *root = xml.RootElement();
+	TiXmlElement *modules = root->FirstChildElement("BUSINESS_MODULE");
+	TiXmlElement *m = FindModule(modules, module);
+	if (!m) {
+		log_error("module %d not exist in config file", module);
+		return -1;
+	}
+
+	TiXmlElement *server = FindCacheServer(m, name);
+	if (!server) {
+		log_error("cache server %s not exist in module %d", name, module);
+		return -1;
+	}
+
+	server->SetAttribute("Locate", locate);
+	xml.SaveFile();
+	return 0;
 }
 

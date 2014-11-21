@@ -161,224 +161,42 @@ int BuildModuleMgr(TiXmlElement *modules) {
 				log_error("cascadeAgent is null when use cascade mode!");
 		}
 		const char *strHotBackupAddr;
+		const char *strMode;
+		int mode;
 		TiXmlElement *cacheNode = m->FirstChildElement("CACHEINSTANCE");
 		while (cacheNode) {
-			log_debug("Add cache node %s %s", cacheNode->Attribute("Name"),cacheNode->Attribute("Addr"));
+			log_debug("Add cache node %s %s", cacheNode->Attribute("Name"),
+					cacheNode->Attribute("Addr"));
+			strHotBackupAddr = cacheNode->Attribute("HotBackupAddr");
+			if (!strHotBackupAddr) {
+				strHotBackupAddr = "";
+			}
+			strMode = cacheNode->Attribute("Locate");
+			if (!strMode) {
+				strMode = "master";
+			}
+			if (strcmp(strMode, "master") == 0) {
+				mode = 0;
+			}
+			else if(strcmp(strMode, "slave") == 0) {
+				mode = 1;
+			}
+			else
+			{
+				log_error("error type of locate");
+				return -1;
+			}
+
 			for (int i = 0; i < gPollThreadGroup->GetPollThreadSize(); i++) {
-				strHotBackupAddr=cacheNode->Attribute("HotBackupAddr");
-				if(!strHotBackupAddr)
-				{
-					strHotBackupAddr="";
-				}
 				module->AddCacheServer(gPollThreadGroup->GetPollThread(i),
 						cacheNode->Attribute("Name"),
-						cacheNode->Attribute("Addr"), -1,
-						strHotBackupAddr);
+						cacheNode->Attribute("Addr"), -1, strHotBackupAddr,
+						mode);
 			}
 			cacheNode = cacheNode->NextSiblingElement("CACHEINSTANCE");
 		}
-
 		m = m->NextSiblingElement("MODULE");
 	}
-	return 0;
-}
-
-int GetLatestVersion(int fd, int nowVersion, const std::string &nowCksum,
-		std::string *cksum) {
-	ttc::agent::HeartBeat heartbeat;
-	heartbeat.set_version(versionStr);
-	heartbeat.set_configure_version(nowVersion);
-	heartbeat.set_configure_md5(nowCksum);
-
-	int byteSize = heartbeat.ByteSize();
-	unsigned char *buf = (unsigned char *) malloc(
-			byteSize + sizeof(ProtocolHeader));
-	ProtocolHeader *header = (ProtocolHeader *) buf;
-	header->magic = ADMIN_PROTOCOL_MAGIC;
-	header->length = byteSize;
-	header->cmd = AC_HeartBeat;
-	heartbeat.SerializeWithCachedSizesToArray(buf + sizeof(ProtocolHeader));
-	if (send_n(fd, (char *) buf, byteSize + sizeof(ProtocolHeader)) < 0) {
-		log_error("send heartbeat error: %m");
-		return -1;
-	}
-
-	if (recv_n(fd, (char *) buf, sizeof(ProtocolHeader)) < 0) {
-		free(buf);
-		log_error("recv heartbeat header error: %m");
-		return -1;
-	}
-
-	if (!IsProtocolHeaderValid(header) || header->cmd != AC_HeartBeatReply) {
-		log_error("invalid header recved: %x, %x, %x", header->magic,
-				header->length, header->cmd);
-		free(buf);
-		return -1;
-	}
-
-	buf = (unsigned char *) realloc(buf,
-			header->length + sizeof(ProtocolHeader));
-	if (recv_n(fd, (char *) buf + sizeof(ProtocolHeader), header->length) < 0) {
-		log_error("recv heartbeat reply body error: %m");
-		free(buf);
-		return -1;
-	}
-
-	ttc::agent::HeartBeatReply reply;
-	if (!reply.ParseFromArray(buf + sizeof(ProtocolHeader), header->length)) {
-		log_error("parse heartbeat body error");
-		free(buf);
-		return -1;
-	}
-
-	free(buf);
-	*cksum = reply.latest_configure_md5();
-	return reply.latest_configure_version();
-}
-
-int GetConfigureFromMaster(int fd, int version, std::string *configure) {
-	ttc::agent::GetLatestConfigure request;
-	request.set_configure_version(version);
-
-	int byteSize = request.ByteSize();
-	unsigned char *buf = (unsigned char *) malloc(
-			byteSize + sizeof(ProtocolHeader));
-	ProtocolHeader *header = (ProtocolHeader *) buf;
-	header->magic = ADMIN_PROTOCOL_MAGIC;
-	header->length = byteSize;
-	header->cmd = AC_GetLatestConfigure;
-	request.SerializeWithCachedSizesToArray(buf + sizeof(ProtocolHeader));
-	if (send_n(fd, (char *) buf, byteSize + sizeof(ProtocolHeader)) < 0) {
-		log_error("send get_latest_configure_request error: %m");
-		return -1;
-	}
-
-	if (recv_n(fd, (char *) buf, sizeof(ProtocolHeader)) < 0) {
-		free(buf);
-		log_error("recv latest_configure_reply header error: %m");
-		return -1;
-	}
-
-	if (!IsProtocolHeaderValid(header)
-			|| header->cmd != AC_LatestConfigureReply) {
-		log_error("invalid header recved: %x, %x, %x", header->magic,
-				header->length, header->cmd);
-		free(buf);
-		return -1;
-	}
-
-	buf = (unsigned char *) realloc(buf,
-			header->length + sizeof(ProtocolHeader));
-	header = (ProtocolHeader *) buf;
-	if (recv_n(fd, (char *) buf + sizeof(ProtocolHeader), header->length) < 0) {
-		log_error("recv latest_configure_reply body error: %m");
-		free(buf);
-		return -1;
-	}
-
-	ttc::agent::LatestConfigureReply reply;
-	if (!reply.ParseFromArray(buf + sizeof(ProtocolHeader), header->length)) {
-		log_error("parse latest_configure_reply body error");
-		free(buf);
-		return -1;
-	}
-
-	free(buf);
-	*configure = reply.configure();
-	return 0;
-}
-
-int GetLatestConfigure() {
-	TiXmlDocument configdoc;
-	if (!configdoc.LoadFile(gConfig)) {
-		log_error("load %s failed, errmsg:%s, row:%d, col:%d\n", gConfig,
-				configdoc.ErrorDesc(), configdoc.ErrorRow(),
-				configdoc.ErrorCol());
-		return -1;
-	}
-
-	TiXmlElement *rootnode = configdoc.RootElement();
-	TiXmlElement *agentconf = rootnode->FirstChildElement("AGENT_CONFIG");
-	if (!agentconf) {
-		log_error("agent conf miss");
-		return -1;
-	}
-
-	const char* masteraddr = agentconf->Attribute("MasterAddr");
-	if (!masteraddr) {
-		log_error("MasterAddr conf miss");
-		return -1;
-	}
-	gMasterAddr = masteraddr;
-
-	const char* versionstr = agentconf->Attribute("Version");
-	if (!versionstr) {
-		log_error("Version conf miss");
-		return -1;
-	}
-	int version = atoi(versionstr);
-	std::string cksum = ConfigGetCksum();
-
-	log_info("current master addr: %s, configure version %d, cksum %s",
-			gMasterAddr.c_str(), version, cksum.c_str());
-
-	CSocketAddress addr;
-	const char *err = addr.SetAddress(gMasterAddr.c_str(), (const char *) NULL);
-	if (err) {
-		log_error("invalid master addr!");
-		return -1;
-	}
-
-	int fd = addr.CreateSocket();
-	if (fd < 0) {
-		log_error("create socket error: %d, %m", errno);
-		return -1;
-	}
-
-	struct timeval tv = { 1, 0 };
-	setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
-
-	if (addr.ConnectSocket(fd) < 0) {
-		log_error("connect master error: %d, %m", errno);
-		close(fd);
-		return -1;
-	}
-
-	std::string latestCksum;
-	int latestVersion = GetLatestVersion(fd, version, cksum, &latestCksum);
-	if (latestVersion < 0) {
-		close(fd);
-		log_error("get latest configure from master %s failed",
-				gMasterAddr.c_str());
-		return -1;
-	}
-
-	if (latestVersion == version && latestCksum == cksum) {
-		close(fd);
-		log_info("we have the latest config.");
-		return 0;
-	}
-
-	std::string configure;
-	if (GetConfigureFromMaster(fd, latestVersion, &configure) < 0) {
-		close(fd);
-		log_error("get latest configure from master %s failed",
-				gMasterAddr.c_str());
-		return -1;
-	}
-
-	close(fd);
-
-	std::string errorMessage;
-
-	if (!IsConfigValid(configure.c_str(), &errorMessage)) {
-		log_error("invalid configure from master!!!![%s]", configure.c_str());
-		return -1;
-	}
-
-	log_info("got new configure from master:\n%s", configure.c_str());
-
-	WriteConfig(configure.c_str());
 	return 0;
 }
 
@@ -562,6 +380,8 @@ int AGparseContacts() {
 	const char* ethernet = netDev->Attribute("ethernet");
 	AgentAlert::GetInstance().setEthernet(std::string(ethernet));
 
+	const char* ipaddr = netDev->Attribute("ipaddr");
+	AgentAlert::GetInstance().setIpaddr(std::string(ipaddr));
 	return 0;
 }
 
@@ -641,10 +461,6 @@ void show_usage(const char *prog) {
 }
 
 int main(int argc, char ** argv) {
-//	if (argc != 1) {
-//		printf("%s version %s\n", argv[0], versionStr);
-//		exit(0);
-//	}
 	int c = -1;
 	while ((c = getopt(argc, argv, "v")) != -1) {
 		switch (c) {
@@ -694,7 +510,6 @@ int main(int argc, char ** argv) {
 			AgentDaemonStart();
 			AgentThreadSetup();
 			PollThreadGroupSetup();
-			GetLatestConfigure();
 			if (AGParseConfig() < 0)
 				return -1;
 

@@ -25,11 +25,8 @@
 #include <errno.h>
 #include "poll_thread_group.h"
 #include "log.h"
-#include "mysql_manager.h"
-#include "curve.h"
 #include "pod.h"
 #include "LockFreeQueue.h"
-#include "write_data.h"
 #include <sstream>
 #include "fk_config.h"
 #include "dtchttpd_version.h"
@@ -38,11 +35,18 @@
 #include "sys/sysinfo.h"
 #include "join.h"
 #include "fd_transfer.h"
+#include "helper.h"
+#include <ext/hash_set>
+#include "storage_manager.h"
+#include "config.h"
 
 //global variables
-MySqlManager *g_manager;
-std::vector<Curve> g_curves;
+FK_Config g_config;
 LockFreeQueue<MSG> g_Queue;
+dtchttpd::CConfig g_storage_config;
+//cascade settings
+std::string g_another_dtchttpd_url;
+__gnu_cxx::hash_set<int> g_gray_bids;
 
 int ListenOn(const std::string &addr);
 
@@ -84,17 +88,23 @@ int main(int argc, char ** argv)
 		}
 	}
 	//set conf file
-	FK_Config config;
 	char config_error_msg[256];
-	if (config.Init(db_conf, config_error_msg) < 0)
+	if (g_config.Init(db_conf, config_error_msg) < 0)
 	{
 		printf("init %s error message: %s", db_conf, config_error_msg);
+		return -1;
+	}
+	if (g_storage_config.ParseConfig() < 0)
+	{
+		printf("CConfig parse config failed");
 		return -1;
 	}
 	dtchttpd::Alarm::GetInstance().SetConf(db_conf);   
 	//make program run in daemon
 	//signal(SIGPIPE,SIG_IGN);
 	daemon(1, 0);
+	//set log directory
+	_init_log_("dtchttpd", "./log");
 	//main logic
 	while(true)
 	{
@@ -102,40 +112,50 @@ int main(int argc, char ** argv)
 		if(p == 0)
 		{
 			log_info("dtchttpd start...");
-			//set log dir and level
-			_init_log_("dtchttpd", "./log");
+			//set log level
 			if (1 != atoi(log_switch))
 				_set_log_level_(3);
 			//set signal action
 			daemon_start();
 			//set process open file limits
-			DaemonSetFdLimit(102400);
-			//use MySqlManager to write mysql database
-			std::string db_ip,db_user,db_pass,db_table;
-			int db_port;
-			config.GetStringValue("db_ip", db_ip);
-			config.GetStringValue("db_user", db_user);
-			config.GetStringValue("db_pass", db_pass);
-			config.GetIntValue("db_port", db_port);
-			config.GetStringValue("db_table", db_table);
-			g_manager = new MySqlManager(db_ip, db_user, db_pass, db_port, db_table);
-			g_manager->GetConnection();
-			//get 8 curves
-			for (int i=0; i<8; i++)
+			DaemonSetFdLimit(100000);
+			//get cascade dtchttpd and ping it
+			g_config.GetStringValue("cascade_url", g_another_dtchttpd_url);
+			if (g_another_dtchttpd_url.empty())
 			{
-				Curve curve;
-				g_curves.push_back(curve);
+				log_info("not set cascade settings");
 			}
-			//worker thraeds : (1)recv (2)parse (3)merge
+			else
+			{
+				log_info("set cascade settings, url is %s", g_another_dtchttpd_url.c_str());
+				//get gray bids
+				std::string gray_bids;
+				g_config.GetStringValue("gray_bid", gray_bids);
+				if (false == gray_bids.empty())
+				{
+					g_gray_bids = SplitString(gray_bids);
+					//ping to make sure cascade dtchttpd alive
+					std::string ping_content = "{\"curve\":1001}";
+					int ping_ret = DoHttpRequest(g_another_dtchttpd_url, ping_content);
+					if (0 != ping_ret)
+					{
+						log_error("ping cascade dtchttpd failed");
+						return 0;
+					}
+				}
+				else
+				{
+					log_error("set cascade url but not set gray bids");
+				}
+			}
+			//worker thraeds : (1)recv (2)parse
 			int core_num = get_nprocs() > 1 ? get_nprocs() : 1; //cpu core number
 			log_info("the cpu core number of this machine is %d", core_num);
 			CPollThreadGroup *pollThreadGroup = new CPollThreadGroup("worker");
 			pollThreadGroup->Start(core_num, 100000);
-			//two fd transfer
+			//fd transfer
 			CFDTransferGroup *fdGroup1 = new CFDTransferGroup(core_num);
 			fdGroup1->Attach(pollThreadGroup);
-			CFDTransferGroup *fdGroup2 = new CFDTransferGroup(core_num);
-			fdGroup2->Attach(pollThreadGroup);
 			pollThreadGroup->RunningThreads();
 			//get listen fd
 			int listenfd = ListenOn("*:" + std::string(listen_port));
@@ -144,22 +164,35 @@ int main(int argc, char ** argv)
 				log_error("listen on %s port failed", listen_port);
 				return 0;
 			}
-			//two join threads do accept fd job 
+			//join threads do accept fd job 
 			Join join_thread1("join1", listenfd, fdGroup1);
 			join_thread1.InitializeThread();
 			join_thread1.RunningThread();
-			Join join_thread2("join2", listenfd, fdGroup2);
-			join_thread2.InitializeThread();
-			join_thread2.RunningThread();
-			//write thread : write data to mysql
-			WriteData writer("write");
-			writer.InitializeThread();
-			writer.RunningThread();
+			//storage layer: write data to mysql
+			dtchttpd::CStorageManager storage_manager(g_storage_config);
+			storage_manager.Run();
 			//init alarm
 			dtchttpd::Alarm::GetInstance().Init(core_num);
-			//httpd stopped
-			while(agentRunning)
-				pause();
+			//scan to alarm
+			while(httpdRunning)
+			{
+				sleep(10);
+				if (!httpdRunning)
+					break;
+				
+				//lock free queue size alarm
+				if (g_Queue.Size()*2 > g_Queue.QueueSize())
+				{
+					log_error("queue size is %u has use %u", g_Queue.QueueSize(), g_Queue.Size());
+					dtchttpd::Alarm::GetInstance().ReportToPlatform(dtchttpd::QUEUE_CONGEST, g_Queue.QueueSize(), g_Queue.Size());
+				}
+				//thread cpu rate alarm
+				if (true == dtchttpd::Alarm::GetInstance().ScanCpuThreadStat())
+				{
+					log_error("dtchttpd cpu use rate too high");
+					dtchttpd::Alarm::GetInstance().ReportToPlatform(dtchttpd::CPU_RATE_HIGH);
+				}
+			}
 			log_info("dtchttpd stopped");
 			return 0;
 		}

@@ -8,7 +8,7 @@
 /*major.minor.beta*/
 #define TTC_VERSION "4.4.0"
 /* the following show line should be line 11 as line number is used in Makefile */
-#define TTC_GIT_VERSION "7bf6dcc"
+#define TTC_GIT_VERSION "32e9a0b"
 #define TTC_VERSION_DETAIL TTC_VERSION"."TTC_GIT_VERSION
 
 extern const char compdatestr[];

@@ -118,12 +118,12 @@ int Worker::MakeTplCode(
 {
 	extern std::string g_strGenPath;
 	extern std::string g_versioninfo;
+	extern std::string g_phpbin;
 	int ret = 0;
 	fstream conf;
 	stringstream sstmp;
-	string sphp, tableConfDir, cfgdir, sdir, agent_ip, agent_port, access_token, stplCode, tgzdir;
+	string tableConfDir, cfgdir, sdir, agent_ip, agent_port, access_token, stplCode, tgzdir;
 
-	sphp = "/usr/local/php/bin/php";
 	char scode[1024];
 	memset(scode, 0, sizeof(scode));
 	string str1 = "/export/servers/dtcCodeFactoryd_";
@@ -190,7 +190,7 @@ int Worker::MakeTplCode(
 		sstmp << "--cplus_dir=\"" << tplCodeDir << "\"";
 		sstmp >> stplCode;
 
-		sprintf(commond, "%s %s %s %s %s %s %s", sphp.c_str(), scode, tableConfDir.c_str(),
+		sprintf(commond, "%s %s %s %s %s %s %s", g_phpbin.c_str(), scode, tableConfDir.c_str(),
 				agent_ip.c_str(), agent_port.c_str(), access_token.c_str(), stplCode.c_str());
 		if(cmd/10 == 0){
 			string s1="cd";
@@ -268,7 +268,7 @@ int Worker::MakeTplCode(
 		sstmp << "--java_dir=\"" << tplCodeDir << "\"";
 		sstmp >> stplCode;
 
-		sprintf(commond, "%s %s %s %s %s %s %s", sphp.c_str(), scode, tableConfDir.c_str(),
+		sprintf(commond, "%s %s %s %s %s %s %s", g_phpbin.c_str(), scode, tableConfDir.c_str(),
 				agent_ip.c_str(), agent_port.c_str(), access_token.c_str(), stplCode.c_str());
 		if(cmd/10 == 0){
 			string s1="cd";
@@ -347,7 +347,7 @@ int Worker::MakeTplCode(
 		sstmp << "--php_dir=\"" << tplCodeDir << "\"";
 		sstmp >> stplCode;
 
-		sprintf(commond, "%s %s %s %s %s %s %s", sphp.c_str(), scode, tableConfDir.c_str(),
+		sprintf(commond, "%s %s %s %s %s %s %s", g_phpbin.c_str(), scode, tableConfDir.c_str(),
 				agent_ip.c_str(), agent_port.c_str(), access_token.c_str(), stplCode.c_str());
 		if(cmd/10 == 0){
 			string s1="cd";

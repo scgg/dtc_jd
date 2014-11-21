@@ -38,6 +38,7 @@ enum AdminResult {
     ModuleAlreadyExist,
     CmdUnkown,
     InvalidConfigFile,
+    InvalidArg,
 };
 
 struct ProtocolHeader

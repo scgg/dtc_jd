@@ -25,12 +25,12 @@ private:
     void ProcessAddModule(uint32_t module, const char *listenAddr, const char *accessToken);
     void ProcessRemoveModule(uint32_t module);
     void ProcessAddCacheServer(uint32_t module, uint32_t id,
-    		const char *name, const char *addr, int virtualNode,const char *hotbak_addr);
+    		const char *name, const char *addr, int virtualNode,const char *hotbak_addr,int mode);
     void ProcessRemoveCacheServer(uint32_t module,
         const char *name, int virtualNode);
 
     void ProcessChangeCacheServerAddress(uint32_t module,
-    		const char *name, const char *addr,const char *hotbak_addr);
+    		const char *name, const char *addr,const char *hotbak_addr,int mode);
     void ProcessReloadConfig(const char *config);
     void ReplyWithMessage(uint8_t code, const char *msg);
     void ReplyOk();

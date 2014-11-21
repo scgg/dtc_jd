@@ -5,13 +5,19 @@ ulimit -c unlimited
 MS=`cat /usr/local/dtc/ip | sed -n -e '2p'`
 if [ "$MS" = "ms" ];then
 	CONFIG_FILE="../conf/hbp_m.conf"
+	PURGE_CONFIG="../conf/hbp_m.conf"
 elif [ "$MS" = "s" ];then
 	CONFIG_FILE="../conf/hbp_s.conf"
+	PURGE_CONFIG="../conf/hbp_s.conf"
+elif [ "$MS" = "sm" ];then
+	PURGE_CONFIG="../conf/hbp_s.conf"
+elif [ "$MS" = "m" ];then
+	PURGE_CONFIG="../conf/hbp_m.conf"
 fi
 
 HBP_ARGV="-n -b -c $CONFIG_FILE"
 HBP_FIXED_ARGV="-f -b -c $CONFIG_FILE"
-HBP_PURGE_ARGV="-p -c $CONFIG_FILE"
+HBP_PURGE_ARGV="-p -c $PURGE_CONFIG"
 
 session_token=`pwd | awk -F'/' '{print $5}'`
 HBP_BIN="hotbackup_$session_token"

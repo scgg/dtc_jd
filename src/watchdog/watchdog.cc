@@ -70,9 +70,9 @@ void CWatchDog::RunLoop(void)
 
 	while(!stop)
 	{
-		poll(pfd, 2, ExpireMicroSeconds(3600*1000, 1/*nonzero*/));
-		uint64_t now = GET_TIMESTAMP();
-
+		int timeout =  ExpireMicroSeconds(3600*1000, 1/*nonzero*/);
+		int interrupted = poll(pfd, 2, timeout);		
+		UpdateNowTime(timeout, interrupted );
 		if (stop)
 			break;
 
@@ -82,7 +82,7 @@ void CWatchDog::RunLoop(void)
 			listener->InputNotify();
 
 		CheckWatchDog();
-		CheckExpired(now);
+		CheckExpired();
 		CheckReady();
 	}
 

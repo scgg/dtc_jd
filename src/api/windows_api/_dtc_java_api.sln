@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_dtc_java_api", "dtc_10_16_1\dtc_10_16_1.vcxproj", "{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}.Debug|Win32.Build.0 = Debug|Win32
+		{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}.Debug|x64.ActiveCfg = Debug|x64
+		{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}.Debug|x64.Build.0 = Debug|x64
+		{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}.Release|Win32.ActiveCfg = Release|Win32
+		{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}.Release|Win32.Build.0 = Release|Win32
+		{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}.Release|x64.ActiveCfg = Release|x64
+		{AF0FB863-CAB1-4199-9D72-DFA2DD8494F1}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

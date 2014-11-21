@@ -44,7 +44,7 @@ void CFdDispacher::TaskNotify(BaseTask *task) {
 				ast->GetVirtualNode());
 		ast->GetModule()->AddCacheServer(ownerThread, ast->GetServerName(),
 				ast->GetAddress(), ast->GetVirtualNode(),
-				ast->GetHotBackupAddress());
+				ast->GetHotBackupAddress(),ast->GetMode());
 		break;
 	}
 	case (REMOVECACHESERVER): {

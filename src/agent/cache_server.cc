@@ -6,9 +6,9 @@
 
 CCacheServer::CCacheServer(const std::string &name, const std::string &addr,
 		CModule *owner, CPollThreadGroup *threadgroup, int connect_per_ttc,
-		const std::string &hotbak_addr) :
+		const std::string &hotbak_addr,int mode) :
 		m_refCnt(0), m_name(name), m_addr(addr), m_module(owner), m_threadgroup(
-				threadgroup), m_hotbak_addr(hotbak_addr) {
+				threadgroup), m_hotbak_addr(hotbak_addr),m_mode(mode) {
 	int threadNum = m_threadgroup->GetPollThreadSize();
 	this->m_connect_per_ttc = connect_per_ttc;
 	int CONN_NUM = m_connect_per_ttc * threadNum;

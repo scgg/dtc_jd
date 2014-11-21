@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/socket.h>
 #include <netinet/tcp.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -10,114 +11,18 @@
 #include "json/json.h"
 #include "poll_thread_group.h"
 #include "log.h"
-#include "HttpServer.h"
+#include "http_server.h"
 #include "prober_config.h"
-#include "ProberCmd.h"
-#include "MemoryUsageCmd.h"
+#include "prober_cmd.h"
+#include "memory_usage_cmd.h"
+#include "map_reduce.h"
 #include "memcheck.h"
 #include "RelativeHourCalculator.h"
 #include "segvcatch.h"
 
-int targetNewHash;
-int hashChanging;
-CConfig* gConfig = NULL;
-CDbConfig* gDbConfig = NULL;
-CTableDefinition* gTableDef = NULL;
-
-class CHttpSessionProber : public CHttpSessionLogic
-{
-public:
-	CHttpSessionProber(CProberConfig *proberConfig) {
-		gConfig = NULL;
-		gDbConfig = NULL;
-		gTableDef = NULL;
-		m_ProberConfig = proberConfig;
-	}
-	~CHttpSessionProber() {}
-	virtual bool ProcessBody(std::string reqBody, std::string &respBody) {
-		Json::Value in, out;
-		Json::Reader reader;
-		Json::FastWriter writer;
-		ProberResultSet prs;
-		bool ret = true;
-
-		if (!reader.parse(reqBody, in, false)) {
-			prs.retcode = RET_CODE_INTERNAL_ERR;
-			prs.errmsg = "解析html请求出错";
-			ret = false;
-			log_error("parse body error. requst body: %s", reqBody.c_str());
-		} else {
-			std::string cn = m_ProberConfig->CmdCodeToClassName(in["cmdcode"].asString());
-			if (atoi(in["cmdcode"].asString().c_str()) > MEM_CMD_BASE &&
-			    !InitMemConf(std::string("/usr/local/dtc/") + in["accesskey"].asString() + "/conf")) {
-				prs.retcode = RET_CODE_INTT_MEM_CONF_ERR;
-				prs.errmsg = "打开缓存配置出错";
-				log_error("init mem conf error, %s", in["accesskey"].asString().c_str());
-				ret = false;
-			}
-			CProberCmd* proberCmd = NULL;
-			log_debug("cmd code: %s, class name: %s", in["cmdcode"].asString().c_str(), cn.c_str());
-			if (ret) {
-				if (std::string("") != cn && (proberCmd = CProberCmd::CreatConcreteCmd(cn)) != NULL) {
-					log_debug("proberCmd: %x", proberCmd);
-					ret = proberCmd->ProcessCmd(in, prs);
-					delete proberCmd;
-				} else {
-					prs.retcode = RET_CODE_NO_CMD;
-					prs.errmsg = "当前版本探针服务不支持此命令";
-					ret = false;
-					log_error("cmdcode: %s not support", in["cmdcode"].asString().c_str());
-				}
-			}
-		}
-
-		out["retcode"] = prs.retcode;
-		out["errmsg"] = prs.errmsg;
-		out["resp"] = prs.resp;
-		respBody = writer.write(out);
-
-		DELETE(gConfig);
-		if (NULL != gDbConfig) {
-			gDbConfig->Destroy();
-			gDbConfig = NULL;
-		}
-		DELETE(gTableDef);
-
-		return ret;
-	}
-
-	bool InitMemConf(std::string confBase) {
-		log_debug("InitMemConf with %s", confBase.c_str());
-		std::string cacheCfg = confBase + "/cache.conf";
-		std::string tableCfg = confBase + "/table.conf";
-		gConfig = new CConfig;
-		if(gConfig->ParseConfig(cacheCfg.c_str(), "cache")){
-			log_error("parse cache config error");
-			return false;
-		}
-		hashChanging = gConfig->GetIntVal("cache", "HashChanging", 0);
-		targetNewHash = gConfig->GetIntVal("cache", "TargetNewHash", 0);
-		RELATIVE_HOUR_CALCULATOR->SetBaseHour(gConfig->GetIntVal("cache", "RelativeYear", 2014));
-	
-		gDbConfig = CDbConfig::Load(tableCfg.c_str());
-		if(gDbConfig == NULL){
-			log_error("load table configuire file error");
-			return false;
-		}
-	
-		gTableDef = gDbConfig->BuildTableDefinition();
-		if(gTableDef == NULL){
-			log_error("build table definition error");
-			return false;
-		}
-		return true;
-	}
-
-private:
-	CProberConfig *m_ProberConfig;
-};
-
 static char prog_name[] = "dtcproberd";
+
+extern pthread_mutex_t globalLock;
 
 static volatile int running = 1;
 
@@ -179,10 +84,12 @@ void ShowVersion() {
 }
 
 void handle_segv() {
+	//return;
 	throw std::runtime_error("My SEGV");
 }
 
 void handle_fpe() {
+	//return;
 	throw std::runtime_error("My FPE");
 }
 
@@ -225,6 +132,8 @@ int main(int argc, char ** argv)
 	segvcatch::init_segv(&handle_segv);
 	segvcatch::init_fpe(&handle_fpe);
 
+	int worker_num = proberConfig.WorkerNum();
+
 	while(true)
 	{
 		pid_t p = fork();
@@ -234,14 +143,28 @@ int main(int argc, char ** argv)
 			daemon_start();
 			DaemonSetFdLimit(102400);
 			log_info("%s start...", prog_name);
-			//listen on 8080 port
-			CPollThreadGroup pollThreadGroup(prog_name);
-			pollThreadGroup.Start(1, 100000);
-			//CHttpSessionProber *httpSessionProber = new CHttpSessionProber();
-			CHttpSessionProber httpSessionProber(&proberConfig);
-			CHttpServer httpServer(&pollThreadGroup, &httpSessionProber);
+			CPollThread pollThread(prog_name);
+			pollThread.SetMaxPollers(100000);
+			pollThread.InitializeThread();
+			CPollThread *worker_thread[worker_num];
+			CDispatcher *dispatcher[worker_num];
+			CWorker *worker[worker_num];
+			for (int i = 0; i < worker_num; ++i) {
+				char buf[32];
+				snprintf(buf, 32, "worker@%d", i);
+				worker_thread[i] = new CPollThread(buf);
+				worker_thread[i]->SetMaxPollers(10000);
+				worker_thread[i]->InitializeThread();
+				int fd[2];
+				socketpair(AF_UNIX, SOCK_STREAM, 0, fd);
+				dispatcher[i] = new CDispatcher(&pollThread, fd[0]);
+				worker[i] = new CWorker(worker_thread[i], fd[1]);
+			}
+			CHttpServer httpServer(&pollThread, &proberConfig, dispatcher);
 			httpServer.ListenOn(proberConfig.ListenOn());
-			pollThreadGroup.RunningThreads();
+			pollThread.RunningThread();
+			for (int i = 0; i < worker_num; ++i)
+				worker_thread[i]->RunningThread();
 			while (running)
 				pause();
 			log_info("%s stopped", prog_name);

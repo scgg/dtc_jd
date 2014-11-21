@@ -5,7 +5,7 @@
 
 #define PRG_NAME "dtcCodeFactoryd"
 #define CODEFACTORY_MAIN_VERSION "1.0.0"
-#define GIT_VERSION "7bf6dcc"
+#define GIT_VERSION "666537f"
 
 std::string GetCurrentVersion()
 {

@@ -12,11 +12,6 @@
 #include <stdlib.h>
 
 char gConfig[256] = "../conf/agent.xml";
-#define AGENT_CONF_NAME  "../conf/agent.conf"
-char agentFile[256] = AGENT_CONF_NAME;
-CConfig* gConfigObj = new CConfig;
-std::string url = "";
-const int HttpServiceTimeOut = 3;
 CStatManager *statM;
 
 int AgentPing(int agentid, std::string agentAddress) {
@@ -99,47 +94,9 @@ int AgentPing(int agentid, std::string agentAddress) {
 	return 0;
 }
 
-int Report(std::string id, std::string s_id, std::string type) {
-	BuffV buf;
-	Json::Reader reader;
-	Json::Value root;
-	std::string strResp;
-	int ret;
-	std::string reportUrl = url + "?id=" + id + "&strategy_id=" + s_id
-			+ "&type=" + type;
-	CurlHttp curlHttp;
-	curlHttp.SetTimeout(HttpServiceTimeOut);
-	ret = curlHttp.HttpRequest(reportUrl, &buf, false);
-	strResp = buf.Ptr();
-	log_info("strResp:%s", strResp.c_str());
-	if (ret != 0) {
-		log_error("id:%s strategy_id:%s:report http error!~~~~~~", id.c_str(),
-				s_id.c_str());
-		return -1;
-	}
-	strResp = buf.Ptr();
-	if (!reader.parse(strResp.c_str(), root, false)) {
-		log_error(
-				"id:%s strategy_id:%s :parse http return message error!~~~~~~",
-				id.c_str(), s_id.c_str());
-		return -1;
-	}
-	std::string result = root["status"].asString();
-	if ("success" != result) {
-		log_error(
-				"id:%s strategy_id:%s:report return error,report failed!~~~~~~",
-				id.c_str(), s_id.c_str());
-		return -1;
-	}
-	return 0;
-}
-
 int main(int argc, char** argv) {
 	if (argc != 2) {
 		printf("usage: %s manual\n", argv[0]);
-		return -1;
-	}
-	if (gConfigObj->ParseConfig(agentFile, "monitor", true)) {
 		return -1;
 	}
 	time_t timep;
@@ -148,9 +105,8 @@ int main(int argc, char** argv) {
 	CStatItem failPing = statM->GetItem(PING_FAIL_TIMES_COUNT);
 	CStatItem contFailPing = statM->GetItem(PING_FAIL_TIMES_COUNT_CON);
 	CStatItem pingStamp = statM->GetItem(PING_TIME_STAMP);
-	url = gConfigObj->GetStrVal("monitor", "AgentMonitorReportURL");
 	_init_log_("agent_checkalive", "../log");
-	_set_log_level_(3);
+	_set_log_level_(7);
 	TiXmlDocument configdoc;
 	if (!configdoc.LoadFile(gConfig)) {
 		log_error("load %s failed, errmsg:%s, row:%d, col:%d\n", gConfig,
@@ -197,7 +153,6 @@ int main(int argc, char** argv) {
 	int ret = AgentPing(gAgentId, gAgentAddr);
 	totalPing++;
 	if (ret == -1) {
-		Report(strAgentId, "2", "1");
 		failPing++;
 		contFailPing++;
 		log_error("ping target host error! report to Monitor center");

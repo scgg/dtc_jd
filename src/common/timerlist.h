@@ -12,11 +12,16 @@ private:
 	CListObject<CTimerObject> tlist;
 	int timeout;
 	CTimerList *next;
-
+	CTimerUnit * timerUnitOwner;
 public:
 	friend class CTimerUnit;
 	friend class CTimerObject;
-	CTimerList(int t) : timeout(t), next(NULL) { }
+	CTimerList(int t) : timeout(t), next(NULL) 
+	{ }
+	CTimerList(int t, CTimerUnit* timerUnitOwner ) : timeout(t), next(NULL),timerUnitOwner(timerUnitOwner) 
+	{ 
+	}
+	int64_t GetTimeUnitNowTime();
 	~CTimerList(void) { tlist.FreeList(); }
 	int CheckExpired(int64_t now=0);
 };
@@ -25,11 +30,22 @@ class CTimerUnit {
 private:
 	CTimerList pending;
 	CTimerList *next;
+
+	
+	int64_t m_SystemTime;/*系统时间*/
+	int64_t m_NowTime;/*应用层时间*/
+	int64_t m_TimeOffSet;/*时间拨动后的修正量*/
+	
+	
 public:
 	friend class CTimerObject;
 	CTimerUnit(void);
 	~CTimerUnit(void);
-
+	int64_t GetNowTime()
+	{
+		return m_NowTime;
+	}
+	void UpdateNowTime(int max_wait = 0, int interrupted = 0);
 	CTimerList *GetTimerListByMSeconds(int);
 	CTimerList *GetTimerList(int t) {return GetTimerListByMSeconds(t*1000);}
 	int ExpireMicroSeconds(int,int=0); // arg: max/min msec
@@ -48,7 +64,7 @@ public:
 	virtual ~CTimerObject(void);
 	virtual void TimerNotify(void);
 	void DisableTimer(void) { ResetList(); }
-	void AttachTimer(class CTimerList *o);
+	void AttachTimer(class CTimerList *o);	
 	void AttachReadyTimer(class CTimerUnit *o) { ListMoveTail(o->pending.tlist); }
 };
 

@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <sys/stat.h>
+#include "log.h"
 
 class CProberConfig
 {
@@ -34,6 +35,16 @@ public:
 		else
 			m_LogLevel = 8; // default to log_debug
 		_set_log_level_(m_LogLevel);
+		const char *worker = proberconf->Attribute("Worker");
+		if (worker)
+			m_WorkerNum = atoi(worker);
+		else
+			m_WorkerNum = 2; // default 2 worker thread;
+		const char *queue = proberconf->Attribute("Queue");
+		if (queue)
+			m_QueueSize = atoi(queue);
+		else
+			m_QueueSize = 3; // default max 3 sessions in queue;
 		const char *listenOn = proberconf->Attribute("ListenOn");
 		if (!listenOn) {
 			log_error("ListenOn miss");
@@ -74,6 +85,12 @@ public:
 		else
 			return std::string("");
 	}
+	int WorkerNum() {
+		return m_WorkerNum;
+	}
+	unsigned int QueueSize() {
+		return m_QueueSize;
+	}
 private:
 	int LoadCmdList(TiXmlElement *rootnode) {
 		TiXmlElement *cmdconf = rootnode->FirstChildElement("CMDLIST");
@@ -93,6 +110,8 @@ private:
 	long m_LastModify;
 	std::string m_Config;
 	int m_LogLevel;
+	int m_WorkerNum;
+	unsigned int m_QueueSize;
 	std::string m_ListenOn;
 	std::map<std::string, std::string> m_CmdMap;
 };

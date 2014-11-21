@@ -170,8 +170,7 @@ void CPollerObject::HangupNotify(void) {
 CPollerUnit::CPollerUnit(int mp)
 {
 	maxPollers = mp;
-	// 鍚屾椂澶勭悊澶氫釜浜嬩欢鏃讹紝瀹规槗鍙戠敓coredump锛岀幇淇敼涓哄彧wait涓�釜浜嬩欢
-	// 鐜板湪鏀惧紑杩欎釜闄愬埗
+	
 	eeSize = maxPollers > 1024 ? 1024 : maxPollers;
 	epfd = -1;
 	ep_events = NULL;
@@ -304,8 +303,9 @@ int CPollerUnit::Epctl (int op, int fd, struct epoll_event *events)
 	return 0;
 }
 
-void CPollerUnit::WaitPollerEvents(int timeout) {
+int CPollerUnit::WaitPollerEvents(int timeout) {
 	nrEvents = epoll_wait (epfd, ep_events, eeSize, timeout);
+	return nrEvents;
 }
 
 void CPollerUnit::ProcessPollerEvents(void) {

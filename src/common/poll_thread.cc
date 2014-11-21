@@ -45,16 +45,17 @@ void * CPollThread::Process (void)
 	{
 		// if previous event loop has no events,
 		// don't allow zero epoll wait time
-		WaitPollerEvents(ExpireMicroSeconds(pollTimeout, nrEvents==0));
-		uint64_t now = GET_TIMESTAMP();
+		int timeout = ExpireMicroSeconds(pollTimeout, nrEvents==0);		
+		int interrupted = WaitPollerEvents(timeout);		
+		UpdateNowTime(timeout, interrupted );
 
 		if (Stopping())
 			break;
 
 		ProcessPollerEvents();
-		CheckExpired(now);
+		CheckExpired(GetNowTime());
 		CTimerUnit::CheckReady();
-		CReadyUnit::CheckReady(now);
+		CReadyUnit::CheckReady(GetNowTime());
 		DelayApplyEvents();
 	}
 	return 0;

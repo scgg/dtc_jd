@@ -39,7 +39,7 @@ do
 	fi
 	
 	cd $script_bin
-	./hb_switch.sh
+	./hb_switch.sh 2>&1 > /dev/null
 	res=$?
 	cd $dtc_dir
 	

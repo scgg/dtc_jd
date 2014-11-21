@@ -1,6 +1,6 @@
 #include "ttcapi.h"
 using namespace  TTC;
-#pragma comment(lib,"windows_api.lib")
+#pragma comment(lib,"_dtc_java_api.lib")
 
 #include <WinSock2.h>
 #pragma comment(lib,"ws2_32.lib")
@@ -17,27 +17,6 @@ int Gett(TTC::Server& stServer, int uiUin)
  
     TTC::GetRequest stGetReq(&stServer);
     iRet = stGetReq.SetKey(uiUin);
- 
-/*
-    if(iRet == 0)
-    iRet = stGetReq.EQ("len",10);//设置where条件，注意第一个key字段不能在这里出现
-*/
-
-
-/*
-    if(iRet == 0)
-    iRet = stGetReq.Need("workername");//设置需要select的字段，注意第一个key字段不能在这里出现
-	if(iRet == 0)
-		iRet = stGetReq.Need("salary");
-	if(iRet == 0)
-		iRet = stGetReq.Need("email");
-	if(iRet == 0)
-		iRet = stGetReq.Need("EmployedDate");
-	if(iRet == 0)
-		iRet = stGetReq.Need("department");
-	if(iRet == 0)
-		iRet = stGetReq.Need("sex");
-*/
 
 	if(iRet == 0)
 		iRet = stGetReq.Need("len");
@@ -65,7 +44,7 @@ int Gett(TTC::Server& stServer, int uiUin)
     return(0); 
     } 
 	 
-  printf("total row [%u] .\n", stResult.NumRows());
+	printf("total row [%u] .\n", stResult.NumRows());
     iRet = stResult.FetchRow();//开始获取数据
     if(iRet < 0)
     { 
@@ -76,18 +55,6 @@ int Gett(TTC::Server& stServer, int uiUin)
     //如果一切正确，则可以输出数据了
     printf("data: %s\n", stResult.BinaryValue("data"));//输出binary类型的数据
     printf("len: %d\n", stResult.IntValue("len"));//输出int类型的数据
-
-
-
-/*
-    printf("workername:%s\n",stResult.StringValue("workername"));
-    printf("salary:%d\n",stResult.IntValue("salary"));
-    printf("email:%s\n",stResult.StringValue("email"));
-    printf("EmployedDate:%s\n",stResult.StringValue("EmployedDate"));
-    printf("department:%s\n",stResult.StringValue("department"));
-    printf("sex:%s\n",stResult.StringValue("sex"));
-*/
-
 
 
     return(1);
@@ -156,6 +123,97 @@ int Del(TTC::Server& stServer, unsigned int uiUin)
 
 
 
+int Purge(TTC::Server& stServer, unsigned int uiUin)
+{
+	int iRet;
+
+	TTC::Request stRequest(&stServer, TTC::RequestPurge);
+	if(iRet=stRequest.SetKey(uiUin) != 0){
+		printf("purge::set key error: %d\n", iRet);
+		return(-1);
+	}
+
+	// execute & get result
+	TTC::Result stResult; 
+	iRet = stRequest.Execute(stResult);
+
+	if(iRet != 0){ 
+		printf("ttc execute purge[%d] error.\n", uiUin);
+		return(-3); 
+	} 
+
+	printf("purge key[%d] success\n", uiUin);
+
+	return(0);
+}
+
+
+int updateFun(TTC::Server& stServer, unsigned int uiUin)
+{
+	int retCode;
+	TTC::UpdateRequest UpdateReq(&stServer);
+	retCode = UpdateReq.SetKey(uiUin);
+	if(retCode != 0)
+	{
+		printf("update-req set key error: %d", retCode);
+		fflush(stdout);
+		return(-1);
+	}
+	retCode = UpdateReq.Set("data", "gggg");
+	retCode = UpdateReq.Set("len", 3333);
+
+	if(retCode != 0)
+	{
+		printf("update-req set field error: %d", retCode);
+		fflush(stdout);
+		return(-1);
+	}
+
+	// execute & get result
+	TTC::Result stResult;
+	retCode = UpdateReq.Execute(stResult);
+	printf("retCode:%d\n", retCode);
+	if(retCode == 0)
+	{
+		TTC::GetRequest getReq(&stServer);
+		getReq.SetKey(uiUin);
+		if(retCode == 0)
+			retCode = getReq.Need("data");
+		if(retCode == 0)
+			retCode = getReq.Need("len");
+
+		if(retCode != 0)
+		{
+			printf("get-req set key or need error: %d", retCode);
+			fflush(stdout);
+			return(-1);
+		}
+
+		// execute & get result
+		retCode = getReq.Execute(stResult);
+		if(retCode < 0)
+		{ 
+			printf ("getReq.Execute get:uin[%lu] error: %d\n", uiUin, retCode);
+			fflush(stdout); 
+			return(-3); 
+		}		
+
+		retCode = stResult.FetchRow();
+		if(retCode < 0)
+		{ 
+			printf ("uin[%lu] ttc fetch row error: %d\n", uiUin, retCode);
+			fflush(stdout); 
+			return(-3); 
+		}
+
+		//如果一切正确，则可以输出数据了
+		printf("data: %s\n", stResult.BinaryValue("data"));//输出binary类型的数据
+		printf("len: %d\n", stResult.IntValue("len"));//输出int类型的数据
+	}
+	return 0;
+}
+
+
 
 
 
@@ -181,6 +239,9 @@ int main()
 
 	key = 100001;
 
+
+
+
 	//下面三行代码是Get数据 
 	iRet = Gett(stServer, key);
 	if(iRet < 0)
@@ -199,18 +260,46 @@ int main()
 		printf("\n%s\n","insert");
 	}
 
+	iRet=updateFun(stServer,key);
+
+
+	//下面三行代码是Get数据 
+	iRet = Gett(stServer, key);
+	if(iRet < 0)
+		return 0;
+
+
+
+	if(iRet >0)//如果get到数据，说明ttc已有相关数据，则update已有数据
+	{
+		iOp=TTC::RequestUpdate;
+		printf("\n%s\n","update");
+	}
+	else//如果没有get到数据，则向ttc中插入数据
+	{
+		iOp=TTC::RequestInsert;
+		printf("\n%s\n","insert");
+	}
+
+
 	//当iOp为RequestUpdate，则是更新已有数据
 	//当iOp为RequestInsert，则是新增数据
-	iRet = Sett(stServer, key, iOp);
+//	iRet = Sett(stServer, key, iOp);
+//	if(iRet != 0)
+//		return 0;
+/*
+	//puge掉缓存数据
+	iRet = Purge(stServer, key);
 	if(iRet != 0)
 		return 0;
 
-	//下面行代码是删除香港key的数据
-//	iRet = Del(stServer, key);
-//	if(iRet != 0)
-//	exit(1);
 
+	//下面行代码是删除相应key的数据
+	iRet = Del(stServer, key);
+	if(iRet != 0)
+	exit(1);
 
+*/
 	system("pause");
 
 	return 0;

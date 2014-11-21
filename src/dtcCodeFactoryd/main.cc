@@ -39,6 +39,7 @@
 MySqlManager *g_manager;
 std::string g_strGenPath;
 std::string g_versioninfo;
+std::string g_phpbin;
 
 int ListenOn(const std::string &addr);
 
@@ -111,6 +112,11 @@ int main(int argc, char ** argv){
 				log_error("get gen_path empty! please check dtcCodeFactoryd.conf!");
 				return -1;
 			}
+			config.GetStringValue("php_bin", g_phpbin);
+			if (g_phpbin == ""){
+				log_error("get php_bin empty! please check dtcCodeFactoryd.conf!");
+				return -1;
+			}
 			config.GetStringValue("db_ip", db_ip);
 			config.GetStringValue("db_user", db_user);
 			config.GetStringValue("db_pass", db_pass);
@@ -123,7 +129,7 @@ int main(int argc, char ** argv){
 				log_error("main: CodeFactory server get mysql connection fail, errCode: %d, errMsg: %s", ret, errMsg.c_str());
 			}
 			//worker thraeds : (1)recv (2)parse (3)merge
-			int core_num = get_nprocs() > 1 ? get_nprocs() : 1; //cpu core number
+			int core_num = get_nprocs() > 1 ? 2 : 1; //cpu core number
 			log_info("the cpu core number of this machine is %d", core_num);
 			CPollThreadGroup *pollThreadGroup = new CPollThreadGroup("worker");
 			pollThreadGroup->Start(core_num, 100000);

@@ -96,7 +96,7 @@ public:
 	int SetMaxPollers(int mp);
 	int GetMaxPollers(void) const { return maxPollers; }
 	int InitializePollerUnit(void);
-	void WaitPollerEvents(int);
+	int WaitPollerEvents(int);
 	void ProcessPollerEvents(void);
 	int GetFD(void) { return epfd; }
 	int DelayApplyEvents();

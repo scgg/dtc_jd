@@ -1,7 +1,7 @@
 <? xml version="1.0" encoding="utf-8" ?>
 <ALL>
-    <AGENT_CONFIG AgentId="1" LogLevel="3" ClientIdleTime="30" AdminListen="*:10101" Version="1" MasterAddr="127.0.0.1:11100"/>
+    <AGENT_CONFIG AgentId="1" LogLevel="3" ClientIdleTime="30" AdminListen="*:9999" Version="1" MasterAddr="127.0.0.1:11100"/>
     <BUSINESS_MODULE>
     </BUSINESS_MODULE>
-    <AGENT_PLUGIN EnablePlugin="0"/>
+    <AGENT_PLUGIN EnablePlugin="0" PluginName="../lib/plugin_http.so" PluginConfigFile="../conf/plugin.conf" PluginWorkerNumber="2" PluginAddr="*:9998/tcp" PluginTimerNotifyInterval="10" />
 </ALL>
